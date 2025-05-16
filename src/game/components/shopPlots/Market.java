@@ -1,17 +1,14 @@
-package src.game.components.shopPlots;
+package game.components.shopPlots;
 
-import src.game.components.Plot;
-import src.utility.Constants;
+import game.components.Plot;
+import utility.Constants;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class Market extends Plot {
-    public Market(Point point) {
-        super(Constants.PlotTypes.MARKET, point);
+    public Market(int pos) {
+        super(Constants.PlotTypes.MARKET, pos);
     }
-    @Override
-    public void interaction(){
 
-    }
 }

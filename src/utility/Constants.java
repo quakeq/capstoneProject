@@ -1,4 +1,4 @@
-package src.utility;
+package utility;
 
 import java.awt.*;
 
@@ -10,12 +10,12 @@ public class Constants {
     public enum PlotTypes{
         ANIMAL(3),
         FISH(2),
-        HYDROPONIC(4),
+        HYDROPONIC(3),
         PLANT(4),
-        SHOP(0),
-        REALTOR(0),
-        MARKET(0),
-        HOUSE(0);
+        SHOP(1),
+        REALTOR(1),
+        MARKET(1),
+        EMPTY(1);
 
 
         public final int cycleFrames;
@@ -24,8 +24,18 @@ public class Constants {
             this.cycleFrames = cycleFrames;
         }
     }
+    public enum ShopItems{
+        FERTILIZER()
+    }
 
     public static class GameConstants{
-        public static final int MAX_FARM_PLOTS = 12;
+        public static final int MAX_FARM_PLOTS = 9;
+        public static final int startMoney = 10;
+
+        public static final Point[] PLOT_POINT = {
+                new Point(100,100), new Point(500, 100), new Point(900, 100),
+                new Point(100, 500), new Point(500, 500), new Point(900,500),
+                new Point(100, 900), new Point(500,900), new Point(900, 900)
+        };
     }
 }

@@ -1,10 +1,10 @@
-package game.components.insidePlots;
+package game.components.menus;
 
-import java.awt.*;
+import javax.swing.*;
 
-public class RealtorInside extends Inside {
+public class RealtorMenu extends JPopupMenu {
 
-    public RealtorInside(){
+    public RealtorMenu(){
 
     }
 

@@ -1,17 +1,14 @@
-package src.game.components.shopPlots;
+package game.components.shopPlots;
 
-import src.game.components.Plot;
-import src.utility.Constants;
+import game.components.Plot;
+import utility.Constants;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class Shop extends Plot {
-    public Shop(Point point) {
-        super(Constants.PlotTypes.SHOP, point);
+    public Shop(int pos) {
+        super(Constants.PlotTypes.SHOP, pos);
     }
-    @Override
-    public void interaction(){
 
-    }
 }

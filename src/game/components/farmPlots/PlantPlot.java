@@ -1,17 +1,29 @@
-package src.game.components.farmPlots;
+package game.components.farmPlots;
 
-import src.game.components.Plot;
-import src.utility.Constants;
+import game.components.Plot;
+import utility.Constants;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class PlantPlot extends Plot {
-    public PlantPlot(Point point) {
-        super(Constants.PlotTypes.PLANT, point);
+
+    JMenuItem harvest = new JMenuItem("Harvest");
+    JMenuItem fertilizer = new JMenuItem("Use Fertilizer");
+    JMenuItem plant = new JMenuItem("Plant");
+
+
+    public PlantPlot(int pos) {
+        super(Constants.PlotTypes.PLANT, pos);
     }
     @Override
-    public void interaction(){
+    public void tickUpdate(){
+        if (this.isDoneGrowing()){
+
+        }
+
+        super.tickUpdate();
 
     }
 }

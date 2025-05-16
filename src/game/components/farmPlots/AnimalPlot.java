@@ -1,22 +1,13 @@
-package src.game.components.farmPlots;
+package game.components.farmPlots;
 
-import src.game.components.Plot;
-import src.utility.Constants;
+import game.components.Plot;
+import utility.Constants;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class AnimalPlot extends Plot {
-    public AnimalPlot(Point point) {
-        super(Constants.PlotTypes.ANIMAL, point);
-    }
-
-    @Override
-    public void interaction(){
-
-    }
-    @Override
-    public void updateTick(){
-
+    public AnimalPlot(int pos) {
+        super(Constants.PlotTypes.ANIMAL, pos);
     }
 }

@@ -1,33 +1,56 @@
-package src.game.components;
+package game.components;
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-import static src.utility.Constants.*;
+import static utility.Constants.*;
 
-public abstract class Plot extends Component implements KeyListener {
+public abstract class Plot extends Component implements MouseListener, KeyListener {
     private final Image[] plotGrowth;
     private final PlotTypes plotType;
 
+    private JPopupMenu menu;
+
     private int curFrame = 0;
 
-    private Point pos;
+    boolean doneGrowing;
+    private int pos;
 
-    public Plot(PlotTypes plotType, Point point){
+    public Plot(int pos){
+        this.plotGrowth = new Image[PlotTypes.EMPTY.cycleFrames];
+        for (int i = 0; i < plotGrowth.length; i++){
+            try {
+                BufferedImage img = ImageIO.read(new File("graphics/plotImages/" + PlotTypes.EMPTY.name() + "/" + i + ".png"));
+                this.plotGrowth[i] = img.getScaledInstance(GraphicSizes.plotSize.width, GraphicSizes.plotSize.height, Image.SCALE_SMOOTH);
+            } catch (IOException ignored) {}
+        }
+        this.menu = new JPopupMenu();
+        this.doneGrowing = false;
+        this.plotType = PlotTypes.EMPTY;
+        this.pos = pos;
+    }
+
+
+    public Plot(PlotTypes plotType, int pos){
         this.plotGrowth = new Image[plotType.cycleFrames];
         for (int i = 0; i < plotGrowth.length; i++){
             try {
-                BufferedImage img = ImageIO.read(new File("src/game/resources/plotImages" + plotType.name() + "/" + i + ".png"));
-                plotGrowth[i] = img.getScaledInstance(GraphicSizes.plotSize.width, GraphicSizes.plotSize.height, Image.SCALE_SMOOTH);
+                BufferedImage img = ImageIO.read(new File("graphics/plotImages/" + plotType.name() + "/" + i + ".png"));
+                this.plotGrowth[i] = img.getScaledInstance(GraphicSizes.plotSize.width, GraphicSizes.plotSize.height, Image.SCALE_SMOOTH);
             } catch (IOException ignored) {}
         }
+        this.menu = new JPopupMenu();
+        this.doneGrowing = false;
         this.plotType = plotType;
-        this.pos = point;
+        this.pos = pos;
     }
 
     @Override
@@ -35,37 +58,50 @@ public abstract class Plot extends Component implements KeyListener {
 
     @Override
     public void paint(Graphics g){
-        g.drawImage(plotGrowth[curFrame], pos.x, pos.y, null);
-    }
-
-
-    @Override
-    public void keyTyped(KeyEvent e) {
-
+        g.drawImage(plotGrowth[curFrame], GameConstants.PLOT_POINT[pos].x, GameConstants.PLOT_POINT[pos].y, null);
     }
 
     @Override
-    public void keyPressed(KeyEvent e) {
-
+    public void mouseClicked(MouseEvent e){
+        if (SwingUtilities.isRightMouseButton(e)){
+            this.menu.show(this,e.getX(), e.getY());
+        }
     }
+    @Override
+    public void mouseEntered(MouseEvent e){}
 
     @Override
-    public void keyReleased(KeyEvent e) {
+    public void keyTyped(KeyEvent e) {}
 
-    }
+    @Override
+    public void keyPressed(KeyEvent e) {}
 
-    public Point getPos() {
-        return pos;
-    }
+    @Override
+    public void keyReleased(KeyEvent e) {}
 
-    public void interaction(){}
+    @Override
+    public void mousePressed(MouseEvent e) {}
+
+    @Override
+    public void mouseReleased(MouseEvent e) {}
+
+    @Override
+    public void mouseExited(MouseEvent e) {}
 
     public void tickUpdate(){
-        if (this.curFrame < plotType.cycleFrames){
+        if (this.curFrame < this.plotType.cycleFrames && this.plotType.cycleFrames > 1) {
             this.curFrame++;
         } else {
-            this.curFrame = 0;
+            this.doneGrowing = true;
         }
+    }
+
+    public void setPlotGrowth(int i ){
+        this.curFrame = i;
+    }
+
+    public boolean isDoneGrowing(){
+        return this.doneGrowing;
     }
 
 }

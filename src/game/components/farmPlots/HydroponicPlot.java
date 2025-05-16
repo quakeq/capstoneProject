@@ -1,17 +1,13 @@
-package src.game.components.farmPlots;
+package game.components.farmPlots;
 
-import src.game.components.Plot;
-import src.utility.Constants;
+import game.components.Plot;
+import utility.Constants;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class HydroponicPlot extends Plot {
-    public HydroponicPlot(Point point) {
-        super(Constants.PlotTypes.HYDROPONIC, point);
-    }
-    @Override
-    public void interaction(){
-
+    public HydroponicPlot(int pos) {
+        super(Constants.PlotTypes.HYDROPONIC, pos);
     }
 }

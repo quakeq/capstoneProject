@@ -1,17 +1,13 @@
-package src.game.components.farmPlots;
+package game.components.farmPlots;
 
-import src.game.components.Plot;
-import src.utility.Constants;
+import game.components.Plot;
+import utility.Constants;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class FishPlot extends Plot {
-    public FishPlot(Point point) {
-        super(Constants.PlotTypes.FISH, point);
-    }
-    @Override
-    public void interaction(){
-
+    public FishPlot(int pos) {
+        super(Constants.PlotTypes.FISH, pos);
     }
 }

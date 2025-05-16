@@ -1,8 +1,7 @@
-package src;
-
-import src.game.components.Plot;
-import src.utility.Constants.*;
-import src.utility.GlobalTick;
+import game.components.Plot;
+import utility.Constants.*;
+import utility.GlobalTick;
+import utility.UserValues;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,29 +15,28 @@ public class PageSetup {
 
     private JFrame frame;
 
-    private final List<List<Plot>> plotMap = new ArrayList<>();
-
     public PageSetup(){
 
         this.frame = new JFrame("Container Example"); // Create a Frame
 
+        for (Plot plot : UserValues.getPlots()){
+            frame.add(plot);
+        }
+
         frame.setMinimumSize(GraphicSizes.windowMinSize);// Set the size of the frame
         frame.setVisible(true);
-        frame.setExtendedState(Frame.MAXIMIZED_BOTH);
         frame.addWindowListener(new WindowAdapter(){
             public void windowClosing(WindowEvent e) {
                 System.exit(0);
             }
         });
-
-        this.update();
-
-
-
+        while (frame.isActive()){
+            update();
+        }
     }
 
     public void update(){
-        GlobalTick.tickUpdate(plotMap);
+        GlobalTick.tickUpdate();
         frame.repaint();
     }
 

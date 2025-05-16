@@ -1,17 +1,15 @@
-package src.game.components.shopPlots;
+package game.components.shopPlots;
 
-import src.game.components.Plot;
-import src.utility.Constants;
+import game.components.Plot;
+import utility.Constants;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 
 public class Realtor extends Plot {
-    public Realtor(Point point) {
-        super(Constants.PlotTypes.REALTOR, point);
+    public Realtor(int pos) {
+        super(Constants.PlotTypes.REALTOR, pos);
     }
-    @Override
-    public void interaction(){
 
-    }
 }
