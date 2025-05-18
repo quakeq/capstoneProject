@@ -1,4 +1,5 @@
 import game.components.Plot;
+import game.components.farmPlots.EmptyPlot;
 import utility.Constants.*;
 import utility.GlobalTick;
 import utility.UserValues;
@@ -15,13 +16,17 @@ public class PageSetup {
 
     private JFrame frame;
 
+
+
     public PageSetup(){
 
-        this.frame = new JFrame("Container Example"); // Create a Frame
+        frame = new JFrame("Container Example"); // Create a Frame
 
         for (Plot plot : UserValues.getPlots()){
             frame.add(plot);
         }
+
+//        frame.add(new EmptyPlot(0));
 
         frame.setMinimumSize(GraphicSizes.windowMinSize);// Set the size of the frame
         frame.setVisible(true);

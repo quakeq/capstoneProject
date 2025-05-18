@@ -13,11 +13,11 @@ import java.io.IOException;
 
 import static utility.Constants.*;
 
-public abstract class Plot extends Component implements MouseListener, KeyListener {
+public abstract class Plot extends JPanel implements MouseListener, KeyListener {
     private final Image[] plotGrowth;
     private final PlotTypes plotType;
 
-    private JPopupMenu menu;
+//    private JPopupMenu menu;
 
     private int curFrame = 0;
 
@@ -28,11 +28,13 @@ public abstract class Plot extends Component implements MouseListener, KeyListen
         this.plotGrowth = new Image[PlotTypes.EMPTY.cycleFrames];
         for (int i = 0; i < plotGrowth.length; i++){
             try {
-                BufferedImage img = ImageIO.read(new File("graphics/plotImages/" + PlotTypes.EMPTY.name() + "/" + i + ".png"));
+                BufferedImage img = ImageIO.read(new File("src/graphics/plotImages/" + PlotTypes.EMPTY.name() + "/" + i + ".png"));
                 this.plotGrowth[i] = img.getScaledInstance(GraphicSizes.plotSize.width, GraphicSizes.plotSize.height, Image.SCALE_SMOOTH);
-            } catch (IOException ignored) {}
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-        this.menu = new JPopupMenu();
+//        this.menu = new JPopupMenu();
         this.doneGrowing = false;
         this.plotType = PlotTypes.EMPTY;
         this.pos = pos;
@@ -43,11 +45,13 @@ public abstract class Plot extends Component implements MouseListener, KeyListen
         this.plotGrowth = new Image[plotType.cycleFrames];
         for (int i = 0; i < plotGrowth.length; i++){
             try {
-                BufferedImage img = ImageIO.read(new File("graphics/plotImages/" + plotType.name() + "/" + i + ".png"));
+                BufferedImage img = ImageIO.read(new File("src/graphics/plotImages/" + plotType.name() + "/" + i + ".png"));
                 this.plotGrowth[i] = img.getScaledInstance(GraphicSizes.plotSize.width, GraphicSizes.plotSize.height, Image.SCALE_SMOOTH);
-            } catch (IOException ignored) {}
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-        this.menu = new JPopupMenu();
+//        this.menu = new JPopupMenu();
         this.doneGrowing = false;
         this.plotType = plotType;
         this.pos = pos;
@@ -58,13 +62,14 @@ public abstract class Plot extends Component implements MouseListener, KeyListen
 
     @Override
     public void paint(Graphics g){
+        super.paint(g);
         g.drawImage(plotGrowth[curFrame], GameConstants.PLOT_POINT[pos].x, GameConstants.PLOT_POINT[pos].y, null);
     }
 
     @Override
     public void mouseClicked(MouseEvent e){
         if (SwingUtilities.isRightMouseButton(e)){
-            this.menu.show(this,e.getX(), e.getY());
+//            this.menu.show(this,e.getX(), e.getY());
         }
     }
     @Override
