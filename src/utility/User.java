@@ -6,38 +6,40 @@ import utility.Constants.*;
 
 import java.util.HashMap;
 
-public class UserValues {
+public class User {
+    private static User user;
 
-
-    private static Plot[] plots = {
-            new EmptyPlot(0), new EmptyPlot(1), new EmptyPlot(2),
+    private Plot[] plots = {
+            new PlantPlot(0), new EmptyPlot(1), new EmptyPlot(2),
             new EmptyPlot(3), new EmptyPlot(4), new EmptyPlot(5),
             new EmptyPlot(6), new EmptyPlot(7), new EmptyPlot(8)
     };
+    private HashMap<ShopItems, Integer> items = new HashMap<>(ShopItems.values().length);
+    private double money;
 
-    private static HashMap<ShopItems, Integer> items = new HashMap<>(ShopItems.values().length);
-    private static double money = GameConstants.startMoney;
+    public User(){
+        this.money = GameConstants.startMoney;
+    }
 
-
-    public static void changeItemAmt(ShopItems item, int num){
+    public void changeItemAmt(ShopItems item, int num){
         if ((items.get(item) + num) > 0){
             items.put(item, items.get(item) + num);
         }
     }
 
-    public static Integer getItemAmt(ShopItems item){
+    public Integer getItemAmt(ShopItems item){
         return items.get(item);
     }
 
-    public static void changeMoneyAmt(double num){
+    public void changeMoneyAmt(double num){
         money += num;
     }
 
-    public static double getMoneyAmt(){
+    public double getMoneyAmt(){
         return money;
     }
 
-    public static void setPlot(int pos, PlotTypes type){
+    public void setPlot(int pos, PlotTypes type){
         switch(type){
             case FISH -> {
                 plots[pos] = new FishPlot(pos);
@@ -53,8 +55,14 @@ public class UserValues {
             }
         }
     }
-    public static Plot[] getPlots(){
+    public Plot[] getPlots(){
         return plots;
+    }
+    public static User getUser(){
+        if (user == null){
+            user = new User();
+        }
+        return user;
     }
 
 }

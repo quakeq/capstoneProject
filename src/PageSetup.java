@@ -1,40 +1,39 @@
 import game.components.Plot;
 import game.components.farmPlots.EmptyPlot;
+import utility.Constants;
 import utility.Constants.*;
 import utility.GlobalTick;
-import utility.UserValues;
+import utility.User;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class PageSetup {
 
     private JFrame frame;
-
+    private User user;
 
 
     public PageSetup(){
-
+        user = User.getUser();
         frame = new JFrame("Container Example"); // Create a Frame
 
-        for (Plot plot : UserValues.getPlots()){
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.setSize(GraphicSizes.windowMinSize);// Set the size of the frame
+        frame.setResizable(false);
+        frame.setLayout(null);
+
+        for (Plot plot : user.getPlots()){
+            plot.setBounds(new Rectangle(plot.getPoint(), frame.getSize()));
             frame.add(plot);
         }
 
-//        frame.add(new EmptyPlot(0));
 
-        frame.setMinimumSize(GraphicSizes.windowMinSize);// Set the size of the frame
         frame.setVisible(true);
-        frame.addWindowListener(new WindowAdapter(){
-            public void windowClosing(WindowEvent e) {
-                System.exit(0);
-            }
-        });
+
         while (frame.isActive()){
             update();
         }

@@ -19,9 +19,6 @@ public class PlantPlot extends Plot {
     }
     @Override
     public void tickUpdate(){
-        if (this.isDoneGrowing()){
-
-        }
 
         super.tickUpdate();
 

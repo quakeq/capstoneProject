@@ -13,7 +13,7 @@ import java.io.IOException;
 
 import static utility.Constants.*;
 
-public abstract class Plot extends JPanel implements MouseListener, KeyListener {
+public abstract class Plot extends Component implements MouseListener, KeyListener {
     private final Image[] plotGrowth;
     private final PlotTypes plotType;
 
@@ -62,8 +62,7 @@ public abstract class Plot extends JPanel implements MouseListener, KeyListener 
 
     @Override
     public void paint(Graphics g){
-        super.paint(g);
-        g.drawImage(plotGrowth[curFrame], GameConstants.PLOT_POINT[pos].x, GameConstants.PLOT_POINT[pos].y, null);
+        g.drawImage(plotGrowth[this.curFrame], GameConstants.PLOT_POINT[this.pos].x, GameConstants.PLOT_POINT[this.pos].y, null);
     }
 
     @Override
@@ -94,11 +93,15 @@ public abstract class Plot extends JPanel implements MouseListener, KeyListener 
     public void mouseExited(MouseEvent e) {}
 
     public void tickUpdate(){
-        if (this.curFrame < this.plotType.cycleFrames && this.plotType.cycleFrames > 1) {
+        if (this.curFrame < this.plotType.cycleFrames-1 && this.plotType.cycleFrames > 1) {
             this.curFrame++;
         } else {
             this.doneGrowing = true;
         }
+    }
+
+    public Point getPoint(){
+        return GameConstants.PLOT_POINT[this.pos];
     }
 
     public void setPlotGrowth(int i ){

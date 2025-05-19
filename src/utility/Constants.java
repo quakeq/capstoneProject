@@ -4,8 +4,9 @@ import java.awt.*;
 
 public class Constants {
     public static class GraphicSizes {
-        public static final Dimension plotSize = new Dimension(100,100);
-        public static final Dimension windowMinSize = new Dimension(1000,1000);
+        public static Dimension plotSize = new Dimension(200,200);
+        public static Dimension renderSize = new Dimension(plotSize.width+10, plotSize.height+10);
+        public static Dimension windowMinSize = new Dimension(1200,800);
     }
     public enum PlotTypes{
         ANIMAL(3),
@@ -29,13 +30,14 @@ public class Constants {
     }
 
     public static class GameConstants{
-        public static final int MAX_FARM_PLOTS = 9;
-        public static final int startMoney = 10;
+        public static int MAX_FARM_PLOTS = 9;
+        public static int startMoney = 10;
 
-        public static final Point[] PLOT_POINT = {
-                new Point(100,100), new Point(500, 100), new Point(900, 100),
-                new Point(100, 500), new Point(500, 500), new Point(900,500),
-                new Point(100, 900), new Point(500,900), new Point(900, 900)
+        public static Point[] PLOT_POINT = {
+                new Point(0,0), new Point(100, 0), new Point(200, 0),
+                new Point(0, 130), new Point(100, 130), new Point(200,130),
+                new Point(0, 260), new Point(100,260), new Point(200, 260)
         };
+
     }
 }
