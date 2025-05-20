@@ -12,4 +12,8 @@ public class Realtor extends Plot {
         super(Constants.PlotTypes.REALTOR, pos);
     }
 
+    public void swapPlot(){
+
+    }
+
 }

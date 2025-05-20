@@ -1,5 +1,6 @@
 package utility;
 
+import javax.swing.*;
 import java.awt.*;
 
 public class Constants {
@@ -23,6 +24,7 @@ public class Constants {
 
         PlotTypes(int cycleFrames){
             this.cycleFrames = cycleFrames;
+
         }
     }
     public enum ShopItems{

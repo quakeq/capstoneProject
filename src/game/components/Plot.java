@@ -17,11 +17,11 @@ public abstract class Plot extends Component implements MouseListener, KeyListen
     private final Image[] plotGrowth;
     private final PlotTypes plotType;
 
-//    private JPopupMenu menu;
+    protected PopupMenu menu;
 
     private int curFrame = 0;
 
-    boolean doneGrowing;
+    private boolean doneGrowing;
     private int pos;
 
     public Plot(int pos){
@@ -34,7 +34,7 @@ public abstract class Plot extends Component implements MouseListener, KeyListen
                 e.printStackTrace();
             }
         }
-//        this.menu = new JPopupMenu();
+        this.menu = new PopupMenu();
         this.doneGrowing = false;
         this.plotType = PlotTypes.EMPTY;
         this.pos = pos;
@@ -51,7 +51,7 @@ public abstract class Plot extends Component implements MouseListener, KeyListen
                 e.printStackTrace();
             }
         }
-//        this.menu = new JPopupMenu();
+        this.menu = new PopupMenu();
         this.doneGrowing = false;
         this.plotType = plotType;
         this.pos = pos;
@@ -68,7 +68,7 @@ public abstract class Plot extends Component implements MouseListener, KeyListen
     @Override
     public void mouseClicked(MouseEvent e){
         if (SwingUtilities.isRightMouseButton(e)){
-//            this.menu.show(this,e.getX(), e.getY());
+            this.menu.show(this, e.getX(), e.getY());
         }
     }
     @Override
@@ -100,11 +100,12 @@ public abstract class Plot extends Component implements MouseListener, KeyListen
         }
     }
 
+
     public Point getPoint(){
         return GameConstants.PLOT_POINT[this.pos];
     }
 
-    public void setPlotGrowth(int i ){
+    public void setPlotGrowth(int i){
         this.curFrame = i;
     }
 

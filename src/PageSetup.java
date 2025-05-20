@@ -9,6 +9,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class PageSetup {
@@ -34,9 +36,15 @@ public class PageSetup {
 
         frame.setVisible(true);
 
-        while (frame.isActive()){
-            update();
-        }
+        java.util.Timer timer = new Timer();
+
+        // Schedule the task to run every 1000 milliseconds (1 second)
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                update();
+            }
+        }, 0, 3000);
     }
 
     public void update(){

@@ -9,18 +9,18 @@ import java.awt.event.KeyEvent;
 
 public class PlantPlot extends Plot {
 
-    JMenuItem harvest = new JMenuItem("Harvest");
-    JMenuItem fertilizer = new JMenuItem("Use Fertilizer");
-    JMenuItem plant = new JMenuItem("Plant");
-
+    MenuItem harvest = new MenuItem("Harvest");
+    MenuItem fertilizer = new MenuItem("Use Fertilizer");
+    MenuItem plant = new MenuItem("Plant");
 
     public PlantPlot(int pos) {
         super(Constants.PlotTypes.PLANT, pos);
     }
     @Override
     public void tickUpdate(){
-
         super.tickUpdate();
-
+        if (this.isDoneGrowing()){
+            this.menu.add(harvest);
+        }
     }
 }
