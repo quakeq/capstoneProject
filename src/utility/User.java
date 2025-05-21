@@ -10,7 +10,7 @@ public class User {
     private static User user;
 
     private Plot[] plots = {
-            new PlantPlot(0), new HydroponicPlot(1), new EmptyPlot(2),
+            new PlantPlot(0), new PlantPlot(1), new HydroponicPlot(2),
             new EmptyPlot(3), new EmptyPlot(4), new EmptyPlot(5),
             new EmptyPlot(6), new EmptyPlot(7), new EmptyPlot(8)
     };

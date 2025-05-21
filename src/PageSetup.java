@@ -7,6 +7,8 @@ import utility.GlobalTick;
 import utility.User;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -20,17 +22,17 @@ public class PageSetup {
 
     private JFrame frame;
     private User user;
-
+    private JPanel contentPanel;
 
     public PageSetup(){
         user = User.getUser();
         frame = new JFrame("Container Example"); // Create a Frame
+        contentPanel = new JPanel(null);
 
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setSize(GraphicSizes.windowMinSize);// Set the size of the frame
-        frame.setResizable(true);
+        frame.setResizable(false);
         frame.setLayout(null);
-
+        contentPanel.setBounds(new Rectangle(new Point(0,0), GraphicSizes.windowMinSize));
 
 
 
@@ -46,16 +48,17 @@ public class PageSetup {
             popupMenu.add(item2);
 
             plot.addMouseListener(new MouseAdapter() {
-                public void mouseReleased(MouseEvent e) {
-                    if (e.isPopupTrigger()) {
-                        popupMenu.show(e.getComponent(), e.getX(), e.getY());
-                    }
-                }
+              public void mouseReleased(MouseEvent e) {
+                  if (e.isPopupTrigger()) {
+                      popupMenu.show(e.getComponent(), e.getX(), e.getY());
+                  }
+              }
             });
-            frame.add(plot);
+            contentPanel.add(plot);
         }
 
-        frame.setBounds(new Rectangle(new Point(0,0), GraphicSizes.windowMinSize));
+        frame.add(contentPanel);
+        frame.setSize(GraphicSizes.windowMinSize);// Set the size of the frame
         frame.setVisible(true);
 
         java.util.Timer timer = new Timer();

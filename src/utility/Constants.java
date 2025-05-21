@@ -6,7 +6,6 @@ import java.awt.*;
 public class Constants {
     public static class GraphicSizes {
         public static Dimension plotSize = new Dimension(200,200);
-        public static Dimension renderSize = new Dimension(plotSize.width+10, plotSize.height+10);
         public static Dimension windowMinSize = new Dimension(1200,800);
     }
     public enum PlotTypes{
@@ -36,9 +35,9 @@ public class Constants {
         public static int startMoney = 10;
 
         public static Point[] PLOT_POINT = {
-                new Point(0,0), new Point(100, 0), new Point(200, 0),
-                new Point(0, 130), new Point(100, 130), new Point(200,130),
-                new Point(0, 260), new Point(100,260), new Point(200, 260)
+                new Point(0,0), new Point(200, 0),new Point(400, 0),
+                new Point(0, 200), new Point(200, 200), new Point(400,200),
+                new Point(0, 400), new Point(200,400), new Point(400, 400)
         };
 
     }

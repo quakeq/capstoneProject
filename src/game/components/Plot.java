@@ -57,12 +57,13 @@ public abstract class Plot extends JComponent implements MouseListener, KeyListe
         this.pos = pos;
     }
 
-    @Override
-    public Dimension getPreferredSize() {return GraphicSizes.plotSize;}
+//    @Override
+//    public Dimension getPreferredSize() {return GraphicSizes.windowMinSize;}
 
     @Override
-    public void paint(Graphics g){
-        g.drawImage(plotGrowth[this.curFrame], GameConstants.PLOT_POINT[this.pos].x, GameConstants.PLOT_POINT[this.pos].y, null);
+    public void paintComponent(Graphics g){
+        super.paintComponent(g);
+        g.drawImage(plotGrowth[this.curFrame], 0,0, getWidth(), getHeight(), this);
     }
 
     @Override
