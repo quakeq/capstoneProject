@@ -13,7 +13,7 @@ import java.io.IOException;
 
 import static utility.Constants.*;
 
-public abstract class Plot extends Component implements MouseListener, KeyListener {
+public abstract class Plot extends JComponent implements MouseListener, KeyListener {
     private final Image[] plotGrowth;
     private final PlotTypes plotType;
 
@@ -103,6 +103,10 @@ public abstract class Plot extends Component implements MouseListener, KeyListen
 
     public Point getPoint(){
         return GameConstants.PLOT_POINT[this.pos];
+    }
+
+    public String getName(){
+        return this.plotType.name();
     }
 
     public void setPlotGrowth(int i){

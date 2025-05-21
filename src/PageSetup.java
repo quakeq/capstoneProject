@@ -1,5 +1,6 @@
 import game.components.Plot;
 import game.components.farmPlots.EmptyPlot;
+import game.components.farmPlots.PlantPlot;
 import utility.Constants;
 import utility.Constants.*;
 import utility.GlobalTick;
@@ -7,6 +8,8 @@ import utility.User;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Timer;
@@ -25,15 +28,34 @@ public class PageSetup {
 
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setSize(GraphicSizes.windowMinSize);// Set the size of the frame
-        frame.setResizable(false);
+        frame.setResizable(true);
         frame.setLayout(null);
 
+
+
+
         for (Plot plot : user.getPlots()){
-            plot.setBounds(new Rectangle(plot.getPoint(), frame.getSize()));
+            plot.setBounds(new Rectangle(plot.getPoint(), GraphicSizes.plotSize));
+
+            JPopupMenu popupMenu = new JPopupMenu();
+
+            JMenuItem item2 = new JMenuItem("Option 2");
+
+            item2.addActionListener(e -> System.out.println(plot.getName()));
+
+            popupMenu.add(item2);
+
+            plot.addMouseListener(new MouseAdapter() {
+                public void mouseReleased(MouseEvent e) {
+                    if (e.isPopupTrigger()) {
+                        popupMenu.show(e.getComponent(), e.getX(), e.getY());
+                    }
+                }
+            });
             frame.add(plot);
         }
 
-
+        frame.setBounds(new Rectangle(new Point(0,0), GraphicSizes.windowMinSize));
         frame.setVisible(true);
 
         java.util.Timer timer = new Timer();
