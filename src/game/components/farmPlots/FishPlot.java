@@ -10,4 +10,9 @@ public class FishPlot extends Plot {
     public FishPlot(int pos) {
         super(Constants.PlotTypes.FISH, pos);
     }
+
+    @Override
+    public void setMenu(){
+
+    }
 }

@@ -3,10 +3,7 @@ package game.components;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -16,13 +13,17 @@ import static utility.Constants.*;
 public abstract class Plot extends JComponent implements MouseListener, KeyListener {
     private final Image[] plotGrowth;
     private final PlotTypes plotType;
+    protected final JPopupMenu popupMenu = new JPopupMenu();
+
 
     protected PopupMenu menu;
 
     private int curFrame = 0;
 
-    private boolean doneGrowing;
+    protected boolean isEmpty;
+    protected boolean isDoneGrowing;
     private int pos;
+
 
     public Plot(int pos){
         this.plotGrowth = new Image[PlotTypes.EMPTY.cycleFrames];
@@ -35,7 +36,7 @@ public abstract class Plot extends JComponent implements MouseListener, KeyListe
             }
         }
         this.menu = new PopupMenu();
-        this.doneGrowing = false;
+        this.isDoneGrowing = false;
         this.plotType = PlotTypes.EMPTY;
         this.pos = pos;
     }
@@ -52,13 +53,10 @@ public abstract class Plot extends JComponent implements MouseListener, KeyListe
             }
         }
         this.menu = new PopupMenu();
-        this.doneGrowing = false;
+        this.isDoneGrowing = false;
         this.plotType = plotType;
         this.pos = pos;
     }
-
-//    @Override
-//    public Dimension getPreferredSize() {return GraphicSizes.windowMinSize;}
 
     @Override
     public void paintComponent(Graphics g){
@@ -97,10 +95,19 @@ public abstract class Plot extends JComponent implements MouseListener, KeyListe
         if (this.curFrame < this.plotType.cycleFrames-1 && this.plotType.cycleFrames > 1) {
             this.curFrame++;
         } else {
-            this.doneGrowing = true;
+            this.isDoneGrowing = true;
         }
     }
 
+    public void setMenu(){
+        this.addMouseListener(new MouseAdapter() {
+            public void mouseReleased(MouseEvent e) {
+                if (e.isPopupTrigger()) {
+                    popupMenu.show(e.getComponent(), e.getX(), e.getY());
+                }
+            }
+        });
+    }
 
     public Point getPoint(){
         return GameConstants.PLOT_POINT[this.pos];
@@ -113,9 +120,18 @@ public abstract class Plot extends JComponent implements MouseListener, KeyListe
     public void setPlotGrowth(int i){
         this.curFrame = i;
     }
+    public PlotTypes getPlotType(){
+        return this.plotType;
+    }
+
 
     public boolean isDoneGrowing(){
-        return this.doneGrowing;
+        return this.isDoneGrowing;
     }
+    public boolean isEmpty(){
+        return this.isEmpty;
+    }
+
+
 
 }

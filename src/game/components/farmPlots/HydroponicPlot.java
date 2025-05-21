@@ -10,4 +10,8 @@ public class HydroponicPlot extends Plot {
     public HydroponicPlot(int pos) {
         super(Constants.PlotTypes.HYDROPONIC, pos);
     }
+    @Override
+    public void setMenu(){
+
+    }
 }

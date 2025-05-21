@@ -34,26 +34,9 @@ public class PageSetup {
         frame.setLayout(null);
         contentPanel.setBounds(new Rectangle(new Point(0,0), GraphicSizes.windowMinSize));
 
-
-
         for (Plot plot : user.getPlots()){
             plot.setBounds(new Rectangle(plot.getPoint(), GraphicSizes.plotSize));
-
-            JPopupMenu popupMenu = new JPopupMenu();
-
-            JMenuItem item2 = new JMenuItem("Option 2");
-
-            item2.addActionListener(e -> System.out.println(plot.getName()));
-
-            popupMenu.add(item2);
-
-            plot.addMouseListener(new MouseAdapter() {
-              public void mouseReleased(MouseEvent e) {
-                  if (e.isPopupTrigger()) {
-                      popupMenu.show(e.getComponent(), e.getX(), e.getY());
-                  }
-              }
-            });
+            plot.setMenu();
             contentPanel.add(plot);
         }
 

@@ -6,4 +6,8 @@ public class EmptyPlot extends Plot {
     public EmptyPlot(int pos) {
         super(pos);
     }
+    @Override
+    public void setMenu(){
+
+    }
 }

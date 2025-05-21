@@ -10,4 +10,8 @@ public class AnimalPlot extends Plot {
     public AnimalPlot(int pos) {
         super(Constants.PlotTypes.ANIMAL, pos);
     }
+    @Override
+    public void setMenu(){
+
+    }
 }
