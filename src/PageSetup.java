@@ -27,12 +27,14 @@ public class PageSetup {
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setResizable(false);
         frame.setLayout(null);
-        contentPanel.setBounds(new Rectangle(new Point(0,0), GraphicSizes.windowMinSize));
+        contentPanel.setBounds(new Rectangle(new Point(0,0), GraphicSizes.plotPanelSize));
+        uiPanel.setBounds(new Rectangle(new Point(0,600), GraphicSizes.uiPanelSize));
 
         for (Plot plot : user.getPlots()){
             plot.setBounds(new Rectangle(plot.getPoint(), GraphicSizes.plotSize));
             contentPanel.add(plot);
         }
+
         frame.add(uiPanel);
         frame.add(contentPanel);
         frame.setSize(GraphicSizes.windowMinSize);// Set the size of the frame

@@ -6,6 +6,8 @@ public class Constants {
     public static class GraphicSizes {
         public static Dimension plotSize = new Dimension(200,200);
         public static Dimension windowMinSize = new Dimension(1200,800);
+        public static Dimension plotPanelSize = new Dimension(1200,600);
+        public static Dimension uiPanelSize = new Dimension(1000, 200);
     }
     public enum PlotTypes{
         ANIMAL(3),

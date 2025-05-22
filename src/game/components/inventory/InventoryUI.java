@@ -4,6 +4,7 @@ import utility.User;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -15,18 +16,16 @@ import static utility.Constants.*;
 public class InventoryUI extends JPanel{
 
     private JPanel itemBar;
-
     private JLabel seeds;
-
     private JLabel fishEggs;
-
     private JLabel fertilizer;
 
 
     private JPanel productBar;
-
-
     private JLabel wheat;
+    private JLabel fish;
+    private JLabel seaweed;
+    private JLabel eggs;
 
     private Image loadImage(MoneyItems item){
         switch (item){
@@ -66,19 +65,16 @@ public class InventoryUI extends JPanel{
         return null;
     }
 
-    private JLabel seaweed;
-
-    private JLabel fish;
 
 
 
     public InventoryUI(){
+        this.setBackground(Color.BLUE);
+        this.setLayout(null);
         this.itemBar = new JPanel();
-        this.itemBar.setLayout(new BoxLayout(itemBar, BoxLayout.Y_AXIS));
-        this.itemBar.setBounds(new Rectangle(1000,0,50,50));
-        this.seeds = new JLabel("0", new ImageIcon(Objects.requireNonNull(loadImage(MoneyItems.WHEAT))), SwingConstants.CENTER);
-//        this.seeds = new JLabel("0", new ImageIcon(Objects.requireNonNull(loadImage(MoneyItems.SEEDS))), SwingConstants.CENTER);
-        this.itemBar.add(seeds);
+        this.itemBar.setBounds(0,0,100,100);
+        this.itemBar.setBackground(Color.CYAN);
+        this.itemBar.setBorder(new LineBorder(Color.BLACK, 2)); // Set a visible border
         this.add(itemBar);
     }
     public void changeUIVal(){
