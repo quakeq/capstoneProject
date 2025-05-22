@@ -2,10 +2,9 @@ package game.components.farmPlots;
 
 import game.components.Plot;
 import utility.Constants;
+import utility.User;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.KeyEvent;
 
 public class PlantPlot extends Plot {
 
@@ -18,9 +17,17 @@ public class PlantPlot extends Plot {
 
     public PlantPlot(int pos) {
         super(Constants.PlotTypes.PLANT, pos);
-        harvest.addActionListener(e -> this.isEmpty = true);
-        fertilizer.addActionListener(e -> this.isFertilized = true);
-        plant.addActionListener(e -> this.isEmpty = false);
+        harvest.addActionListener(e -> {
+            this.isEmpty = true;
+            this.isDoneGrowing = false;
+        });
+        fertilizer.addActionListener(e -> {
+            this.isFertilized = true;
+            User.getUser().changeItemAmt(Constants.MoneyItems.FERTILIZER, -1);
+        });
+        plant.addActionListener(e -> {
+            this.isEmpty = false;
+        });
     }
     @Override
     public void tickUpdate(){
@@ -28,7 +35,7 @@ public class PlantPlot extends Plot {
     }
     @Override
     public void setMenu(){
-        if (this.isDoneGrowing()){
+        if (this.isDoneGrowing){
             this.popupMenu.add(harvest);
         } else {
             this.popupMenu.remove(harvest);
@@ -38,7 +45,7 @@ public class PlantPlot extends Plot {
         } else {
             this.popupMenu.remove(plant);
         }
-        if (this.isFertilized){
+        if (!this.isFertilized){
             this.popupMenu.add(fertilizer);
         } else {
             this.popupMenu.remove(fertilizer);

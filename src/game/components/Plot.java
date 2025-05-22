@@ -92,14 +92,24 @@ public abstract class Plot extends JComponent implements MouseListener, KeyListe
     public void mouseExited(MouseEvent e) {}
 
     public void tickUpdate(){
-        if (this.curFrame < this.plotType.cycleFrames-1 && this.plotType.cycleFrames > 1) {
-            this.curFrame++;
-        } else {
+        if (Math.random() > 0.5){
+            if (this.curFrame < this.plotType.cycleFrames-1 && this.plotType.cycleFrames > 1 && !this.isEmpty) {
+                this.curFrame++;
+            }
+        }
+
+    }
+    public void fastUpdate(){
+        if (this.curFrame == this.plotType.cycleFrames-1){
             this.isDoneGrowing = true;
+        }
+        if (this.isEmpty){
+            this.curFrame = 0;
         }
     }
 
     public void setMenu(){
+
         this.addMouseListener(new MouseAdapter() {
             public void mouseReleased(MouseEvent e) {
                 if (e.isPopupTrigger()) {

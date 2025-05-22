@@ -2,21 +2,21 @@ package utility;
 
 import game.components.Plot;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 public class GlobalTick {
 
     public GlobalTick(){}
 
-    public static void tickUpdate(){
+    public static void growUpdate(){
         for (Plot plot : User.getUser().getPlots()){
-            if (Math.random() > 0.5){
-                plot.tickUpdate();
-            }
+            plot.tickUpdate();
         }
     }
-
+    public static void statusUpdate(){
+        for (Plot plot : User.getUser().getPlots()){
+            plot.fastUpdate();
+            plot.setMenu();
+        }
+    }
 
 
 }

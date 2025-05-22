@@ -14,20 +14,20 @@ public class User {
             new EmptyPlot(3), new EmptyPlot(4), new EmptyPlot(5),
             new EmptyPlot(6), new EmptyPlot(7), new EmptyPlot(8)
     };
-    private HashMap<ShopItems, Integer> items = new HashMap<>(ShopItems.values().length);
+    private HashMap<MoneyItems, Integer> items = new HashMap<>(MoneyItems.values().length);
     private double money;
 
     public User(){
         this.money = GameConstants.startMoney;
     }
 
-    public void changeItemAmt(ShopItems item, int num){
+    public void changeItemAmt(MoneyItems item, int num){
         if ((items.get(item) + num) > 0){
             items.put(item, items.get(item) + num);
         }
     }
 
-    public Integer getItemAmt(ShopItems item){
+    public Integer getItemAmt(MoneyItems item){
         return items.get(item);
     }
 

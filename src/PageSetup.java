@@ -1,19 +1,11 @@
 import game.components.Plot;
-import game.components.farmPlots.EmptyPlot;
-import game.components.farmPlots.PlantPlot;
-import utility.Constants;
+import game.components.inventory.InventoryUI;
 import utility.Constants.*;
 import utility.GlobalTick;
 import utility.User;
 
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -23,11 +15,14 @@ public class PageSetup {
     private JFrame frame;
     private User user;
     private JPanel contentPanel;
+    private JPanel uiPanel;
 
     public PageSetup(){
         user = User.getUser();
         frame = new JFrame("Container Example"); // Create a Frame
         contentPanel = new JPanel(null);
+        uiPanel = new InventoryUI();
+
 
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setResizable(false);
@@ -36,27 +31,36 @@ public class PageSetup {
 
         for (Plot plot : user.getPlots()){
             plot.setBounds(new Rectangle(plot.getPoint(), GraphicSizes.plotSize));
-            plot.setMenu();
             contentPanel.add(plot);
         }
-
+        frame.add(uiPanel);
         frame.add(contentPanel);
         frame.setSize(GraphicSizes.windowMinSize);// Set the size of the frame
         frame.setVisible(true);
 
         java.util.Timer timer = new Timer();
 
-        // Schedule the task to run every 1000 milliseconds (1 second)
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                update();
+                fastUpdate();
+            }
+        }, 0, 100);
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                slowUpdate();
             }
         }, 0, 3000);
     }
 
-    public void update(){
-        GlobalTick.tickUpdate();
+    public void slowUpdate(){
+        GlobalTick.growUpdate();
+        frame.repaint();
+    }
+
+    public void fastUpdate(){
+        GlobalTick.statusUpdate();
         frame.repaint();
     }
 

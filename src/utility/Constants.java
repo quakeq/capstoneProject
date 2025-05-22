@@ -1,6 +1,5 @@
 package utility;
 
-import javax.swing.*;
 import java.awt.*;
 
 public class Constants {
@@ -26,8 +25,22 @@ public class Constants {
 
         }
     }
-    public enum ShopItems{
-        FERTILIZER()
+    public enum MoneyItems {
+        FERTILIZER(true, true, 10, 50),
+        SEEDS(true, false, 0, 20),
+        EGGS(true, true, 20, 100),
+        WHEAT(false, true, 15, 0);
+
+        public final boolean buyable;
+        public final boolean sellable;
+        public final double sellCost;
+        public final double buyCost;
+        MoneyItems(boolean buyable, boolean sellable, double sellCost, double buyCost){
+            this.buyable = buyable;
+            this.sellable = sellable;
+            this.sellCost = sellCost;
+            this.buyCost = buyCost;
+        }
     }
 
     public static class GameConstants{
