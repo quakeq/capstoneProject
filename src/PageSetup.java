@@ -19,9 +19,10 @@ public class PageSetup {
 
     public PageSetup(){
         user = User.getUser();
+        uiPanel = InventoryUI.getInventoryUI();
         frame = new JFrame("Container Example"); // Create a Frame
         contentPanel = new JPanel(null);
-        uiPanel = new InventoryUI();
+
 
 
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

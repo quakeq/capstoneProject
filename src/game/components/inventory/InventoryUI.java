@@ -9,11 +9,12 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.Objects;
 
 import static utility.Constants.*;
 
 public class InventoryUI extends JPanel{
+
+    private static InventoryUI inventoryUI;
 
     private JPanel itemBar;
     private JLabel seeds;
@@ -27,12 +28,12 @@ public class InventoryUI extends JPanel{
     private JLabel seaweed;
     private JLabel eggs;
 
-    private Image loadImage(MoneyItems item){
+    private Icon loadIcon(MoneyItems item){
         switch (item){
             case WHEAT -> {
                 try {
                     BufferedImage img = ImageIO.read(new File("src/graphics/uiImages/WHEAT.png"));
-                    return img.getScaledInstance(GraphicSizes.plotSize.width, GraphicSizes.plotSize.height, Image.SCALE_SMOOTH);
+                    return new ImageIcon(img.getScaledInstance(GraphicSizes.iconSize.width, GraphicSizes.iconSize.height, Image.SCALE_SMOOTH));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -40,7 +41,7 @@ public class InventoryUI extends JPanel{
             case EGGS -> {
                 try {
                     BufferedImage img = ImageIO.read(new File("src/graphics/uiImages/EGG.png"));
-                    return img.getScaledInstance(GraphicSizes.plotSize.width, GraphicSizes.plotSize.height, Image.SCALE_SMOOTH);
+                    return new ImageIcon(img.getScaledInstance(GraphicSizes.iconSize.width, GraphicSizes.iconSize.height, Image.SCALE_SMOOTH));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -48,7 +49,7 @@ public class InventoryUI extends JPanel{
             case SEEDS -> {
                 try {
                     BufferedImage img = ImageIO.read(new File("src/graphics/uiImages/SEEDS.png"));
-                    return img.getScaledInstance(GraphicSizes.plotSize.width, GraphicSizes.plotSize.height, Image.SCALE_SMOOTH);
+                    return new ImageIcon(img.getScaledInstance(GraphicSizes.iconSize.width, GraphicSizes.iconSize.height, Image.SCALE_SMOOTH));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -56,7 +57,7 @@ public class InventoryUI extends JPanel{
             case FERTILIZER -> {
                 try {
                     BufferedImage img = ImageIO.read(new File("src/graphics/uiImages/FERTILIZER.png"));
-                    return img.getScaledInstance(GraphicSizes.plotSize.width, GraphicSizes.plotSize.height, Image.SCALE_SMOOTH);
+                    return new ImageIcon(img.getScaledInstance(GraphicSizes.iconSize.width, GraphicSizes.iconSize.height, Image.SCALE_SMOOTH));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -66,19 +67,33 @@ public class InventoryUI extends JPanel{
     }
 
 
-
-
     public InventoryUI(){
-        this.setBackground(Color.BLUE);
+        this.setBackground(Color.GRAY);
         this.setLayout(null);
-        this.itemBar = new JPanel();
-        this.itemBar.setBounds(0,0,100,100);
-        this.itemBar.setBackground(Color.CYAN);
-        this.itemBar.setBorder(new LineBorder(Color.BLACK, 2)); // Set a visible border
-        this.add(itemBar);
+        this.productBar = new JPanel();
+        this.productBar.setBounds(10,10,600,140);
+        this.productBar.setLayout(new BoxLayout(this.productBar, BoxLayout.X_AXIS));
+        this.wheat = new JLabel("0",loadIcon(MoneyItems.WHEAT), SwingConstants.LEFT);
+        this.eggs = new JLabel("0",loadIcon(MoneyItems.EGGS), SwingConstants.LEFT);
+        this.productBar.add(this.wheat);
+        this.productBar.add(this.eggs);
+        this.productBar.setBorder(new LineBorder(Color.BLACK, 2)); // Set a visible border
+        this.add(productBar);
     }
-    public void changeUIVal(){
-        seeds.setText(String.valueOf(User.getUser().getItemAmt(MoneyItems.SEEDS)));
+    public void changeUIVal(MoneyItems item){
+        switch (item){
+            case WHEAT -> wheat.setText(String.valueOf(User.getUser().getItemAmt(MoneyItems.WHEAT)));
+            case EGGS -> eggs.setText(String.valueOf(User.getUser().getItemAmt(MoneyItems.WHEAT)));
+            case SEEDS -> seeds.setText(String.valueOf(User.getUser().getItemAmt(MoneyItems.WHEAT)));
+            case FERTILIZER -> fertilizer.setText(String.valueOf(User.getUser().getItemAmt(MoneyItems.WHEAT)));
+        }
+    }
+
+    public static InventoryUI getInventoryUI(){
+        if (inventoryUI == null){
+            inventoryUI = new InventoryUI();
+        }
+        return inventoryUI;
     }
 
 }

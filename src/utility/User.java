@@ -14,10 +14,14 @@ public class User {
             new EmptyPlot(3), new EmptyPlot(4), new EmptyPlot(5),
             new EmptyPlot(6), new EmptyPlot(7), new EmptyPlot(8)
     };
-    private HashMap<MoneyItems, Integer> items = new HashMap<>(MoneyItems.values().length);
+    private HashMap<MoneyItems, Integer> items;
     private double money;
 
     public User(){
+        this.items = new HashMap<>(MoneyItems.values().length);
+        this.items.put(MoneyItems.WHEAT, 0);
+        this.items.put(MoneyItems.EGGS, 0);
+        this.items.put(MoneyItems.FERTILIZER, 0);
         this.money = GameConstants.startMoney;
     }
 
