@@ -9,9 +9,9 @@ import java.util.HashMap;
 public class User {
     private static User user;
 
-    private Plot[] plots = {
-            new PlantPlot(0), new EmptyPlot(1), new EmptyPlot(2),
-            new EmptyPlot(3), new EmptyPlot(4), new EmptyPlot(5),
+    private Plot[] farmPlots = {
+            new PlantPlot(0), new PlantPlot(1), new PlantPlot(2),
+            new PlantPlot(3), new PlantPlot(4), new PlantPlot(5),
             new EmptyPlot(6), new EmptyPlot(7), new EmptyPlot(8)
     };
     private HashMap<MoneyItems, Integer> items;
@@ -49,22 +49,22 @@ public class User {
     public void setPlot(int pos, PlotTypes type){
         switch(type){
             case FISH -> {
-                plots[pos] = new FishPlot(pos);
+                farmPlots[pos] = new FishPlot(pos);
             }
             case ANIMAL -> {
-                plots[pos] = new AnimalPlot(pos);
+                farmPlots[pos] = new AnimalPlot(pos);
             }
             case PLANT -> {
-                plots[pos] = new PlantPlot(pos);
+                farmPlots[pos] = new PlantPlot(pos);
             }
             case HYDROPONIC -> {
-                plots[pos] = new HydroponicPlot(pos);
+                farmPlots[pos] = new HydroponicPlot(pos);
             }
         }
     }
 
-    public Plot[] getPlots(){
-        return plots;
+    public Plot[] getFarmPlots(){
+        return farmPlots;
     }
     public static User getUser(){
         if (user == null){

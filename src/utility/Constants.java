@@ -55,8 +55,8 @@ public class Constants {
         public static Point[] PLOT_POINT = {
                 new Point(0,0), new Point(200, 0),new Point(400, 0),
                 new Point(0, 200), new Point(200, 200), new Point(400,200),
-                new Point(0, 400), new Point(200,400), new Point(400, 400)
+                new Point(0, 400), new Point(200,400), new Point(400, 400),
+                new Point(600,0), new Point(600,300), new Point(600,600)
         };
-
     }
 }

@@ -1,5 +1,8 @@
+package core;
+
 import game.components.Plot;
 import game.components.inventory.InventoryUI;
+import game.components.shopPlots.Land;
 import utility.Constants.*;
 import utility.GlobalTick;
 import utility.User;
@@ -12,34 +15,42 @@ import java.util.TimerTask;
 
 public class PageSetup {
 
-    private JFrame frame;
+    private static JFrame frame;
     private User user;
     private JPanel contentPanel;
     private JPanel uiPanel;
+    private Land land;
 
     public PageSetup(){
         user = User.getUser();
         uiPanel = InventoryUI.getInventoryUI();
-        frame = new JFrame("Container Example"); // Create a Frame
+        frame = PageSetup.getFrame();
+        land = new Land();
         contentPanel = new JPanel(null);
-
+        contentPanel.setBackground(new Color(0, 0, 0, 0));
 
 
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setResizable(false);
         frame.setLayout(null);
+
         contentPanel.setBounds(new Rectangle(new Point(0,0), GraphicSizes.plotPanelSize));
         uiPanel.setBounds(new Rectangle(new Point(0,620), GraphicSizes.uiPanelSize));
 
-        for (Plot plot : user.getPlots()){
+        for (Plot plot : user.getFarmPlots()){
             plot.setBounds(new Rectangle(plot.getPoint(), GraphicSizes.plotSize));
             contentPanel.add(plot);
         }
+        land.setBounds(new Rectangle(land.getPoint(), GraphicSizes.plotSize));
+        contentPanel.add(land);
 
         frame.add(uiPanel);
         frame.add(contentPanel);
         frame.setSize(GraphicSizes.windowMinSize);// Set the size of the frame
+
         frame.setVisible(true);
+
+
 
         java.util.Timer timer = new Timer();
 
@@ -65,6 +76,12 @@ public class PageSetup {
     public void fastUpdate(){
         GlobalTick.statusUpdate();
         frame.repaint();
+    }
+    public static JFrame getFrame(){
+        if (frame == null){
+            frame = new JFrame("Container Example"); // Create a Frame
+        }
+        return frame;
     }
 
 }
