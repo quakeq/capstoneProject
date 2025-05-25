@@ -31,16 +31,15 @@ public class PlantPlot extends Plot {
         });
         plant.addActionListener(e -> {
             this.isEmpty = false;
-
+            this.isDoneGrowing = false;
+            User.getUser().changeItemAmt(Constants.MoneyItems.SEEDS, -1);
+            InventoryUI.getInventoryUI().changeUIVal(Constants.MoneyItems.SEEDS);
         });
     }
-    @Override
-    public void tickUpdate(){
-        super.tickUpdate();
-    }
+
     @Override
     public void setMenu(){
-        if (this.isDoneGrowing){
+        if (this.isDoneGrowing && !this.isEmpty){
             this.popupMenu.add(harvest);
         } else {
             this.popupMenu.remove(harvest);

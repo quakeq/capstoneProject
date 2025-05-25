@@ -7,7 +7,7 @@ public class Constants {
         public static Dimension plotSize = new Dimension(200,200);
         public static Dimension windowMinSize = new Dimension(1200,800);
         public static Dimension plotPanelSize = new Dimension(1200,600);
-        public static Dimension uiPanelSize = new Dimension(1000, 165);
+        public static Dimension uiPanelSize = new Dimension(1000, 145);
         public static Dimension iconSize = new Dimension(64,64);
     }
     public enum PlotTypes{
@@ -32,7 +32,9 @@ public class Constants {
         FERTILIZER(true, true, 10, 50),
         SEEDS(true, false, 0, 20),
         EGGS(true, true, 20, 100),
-        WHEAT(false, true, 15, 0);
+        WHEAT(false, true, 15, 0),
+        ROE(true, true, 50, 200),
+        SEAWEED(true, true, 10, 20);
 
         public final boolean buyable;
         public final boolean sellable;

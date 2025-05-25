@@ -29,7 +29,7 @@ public class PageSetup {
         frame.setResizable(false);
         frame.setLayout(null);
         contentPanel.setBounds(new Rectangle(new Point(0,0), GraphicSizes.plotPanelSize));
-        uiPanel.setBounds(new Rectangle(new Point(0,600), GraphicSizes.uiPanelSize));
+        uiPanel.setBounds(new Rectangle(new Point(0,620), GraphicSizes.uiPanelSize));
 
         for (Plot plot : user.getPlots()){
             plot.setBounds(new Rectangle(plot.getPoint(), GraphicSizes.plotSize));

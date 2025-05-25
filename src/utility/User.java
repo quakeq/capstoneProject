@@ -22,11 +22,14 @@ public class User {
         this.items.put(MoneyItems.WHEAT, 0);
         this.items.put(MoneyItems.EGGS, 0);
         this.items.put(MoneyItems.FERTILIZER, 0);
+        this.items.put(MoneyItems.ROE, 0);
+        this.items.put(MoneyItems.SEAWEED, 0);
+        this.items.put(MoneyItems.SEEDS, 2);
         this.money = GameConstants.startMoney;
     }
 
     public void changeItemAmt(MoneyItems item, int num){
-        if ((items.get(item) + num) > 0){
+        if ((items.get(item) + num) >= 0){
             items.put(item, items.get(item) + num);
         }
     }
