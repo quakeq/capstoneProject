@@ -6,6 +6,7 @@ import game.components.menus.RealtorMenu;
 import utility.Constants;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.event.MouseEvent;
@@ -21,14 +22,13 @@ public class Land extends Plot {
         super(Constants.PlotTypes.REALTOR, 9);
         this.menu = new RealtorMenu();
 
+        this.menu.setBounds(new Rectangle(new Point(300,100), new Dimension(600,600)));
+        this.menu.setResizable(false);
+
         addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (hasEntered){
-                    PageSetup.getFrame().getGlassPane().setVisible(true);
-                } else {
-                    PageSetup.getFrame().getGlassPane().setVisible(false);
-                }
+                menu.setVisible(true);
             }
             @Override
             public void mousePressed(MouseEvent e) {}
@@ -36,11 +36,9 @@ public class Land extends Plot {
             public void mouseReleased(MouseEvent e) {}
             @Override
             public void mouseEntered(MouseEvent e) {
-                hasEntered = true;
             }
             @Override
             public void mouseExited(MouseEvent e) {
-                hasEntered = false;
             }
         });
     }

@@ -39,6 +39,7 @@ public abstract class Plot extends JComponent implements MouseListener, KeyListe
         this.isDoneGrowing = false;
         this.plotType = PlotTypes.EMPTY;
         this.pos = pos;
+        this.isEmpty = true;
     }
 
 
@@ -56,6 +57,7 @@ public abstract class Plot extends JComponent implements MouseListener, KeyListe
         this.isDoneGrowing = false;
         this.plotType = plotType;
         this.pos = pos;
+        this.isEmpty = true;
     }
 
     @Override

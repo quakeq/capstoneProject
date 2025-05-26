@@ -9,6 +9,7 @@ public class Constants {
         public static Dimension plotPanelSize = new Dimension(1200,600);
         public static Dimension uiPanelSize = new Dimension(1000, 145);
         public static Dimension iconSize = new Dimension(64,64);
+        public static Dimension menuIconSize = new Dimension(150,150);
     }
     public enum PlotTypes{
         ANIMAL(3),

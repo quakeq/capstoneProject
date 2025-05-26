@@ -26,26 +26,24 @@ public class PageSetup {
         uiPanel = InventoryUI.getInventoryUI();
         frame = PageSetup.getFrame();
         land = new Land();
-        contentPanel = new JPanel(null);
-        contentPanel.setBackground(new Color(0, 0, 0, 0));
+
 
 
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setResizable(false);
         frame.setLayout(null);
 
-        contentPanel.setBounds(new Rectangle(new Point(0,0), GraphicSizes.plotPanelSize));
         uiPanel.setBounds(new Rectangle(new Point(0,620), GraphicSizes.uiPanelSize));
 
         for (Plot plot : user.getFarmPlots()){
             plot.setBounds(new Rectangle(plot.getPoint(), GraphicSizes.plotSize));
-            contentPanel.add(plot);
+            frame.add(plot);
         }
+
         land.setBounds(new Rectangle(land.getPoint(), GraphicSizes.plotSize));
-        contentPanel.add(land);
+        frame.add(land);
 
         frame.add(uiPanel);
-        frame.add(contentPanel);
         frame.setSize(GraphicSizes.windowMinSize);// Set the size of the frame
 
         frame.setVisible(true);

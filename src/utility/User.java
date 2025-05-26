@@ -1,23 +1,36 @@
 package utility;
 
+import core.PageSetup;
 import game.components.Plot;
 import game.components.farmPlots.*;
 import utility.Constants.*;
 
+import java.awt.*;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class User {
     private static User user;
 
-    private Plot[] farmPlots = {
-            new PlantPlot(0), new PlantPlot(1), new PlantPlot(2),
-            new PlantPlot(3), new PlantPlot(4), new PlantPlot(5),
-            new EmptyPlot(6), new EmptyPlot(7), new EmptyPlot(8)
-    };
+    private ArrayList<Plot> farmPlots = new ArrayList<>();
+
+
     private HashMap<MoneyItems, Integer> items;
     private double money;
 
     public User(){
+
+        this.farmPlots.add(new EmptyPlot(0));
+        this.farmPlots.add(new EmptyPlot(1));
+        this.farmPlots.add(new EmptyPlot(2));
+        this.farmPlots.add(new EmptyPlot(3));
+        this.farmPlots.add(new EmptyPlot(4));
+        this.farmPlots.add(new EmptyPlot(5));
+        this.farmPlots.add(new EmptyPlot(6));
+        this.farmPlots.add(new EmptyPlot(7));
+        this.farmPlots.add(new EmptyPlot(8));
+
         this.items = new HashMap<>(MoneyItems.values().length);
         this.items.put(MoneyItems.WHEAT, 0);
         this.items.put(MoneyItems.EGGS, 0);
@@ -49,21 +62,41 @@ public class User {
     public void setPlot(int pos, PlotTypes type){
         switch(type){
             case FISH -> {
-                farmPlots[pos] = new FishPlot(pos);
+                PageSetup.getFrame().remove(farmPlots.get(pos));
+                farmPlots.set(pos, new FishPlot(pos));
+                farmPlots.get(pos).setBounds(new Rectangle(farmPlots.get(pos).getPoint(), GraphicSizes.plotSize));
+                PageSetup.getFrame().add(farmPlots.get(pos));
+                PageSetup.getFrame().revalidate();
+                PageSetup.getFrame().repaint();
             }
             case ANIMAL -> {
-                farmPlots[pos] = new AnimalPlot(pos);
+                PageSetup.getFrame().remove(farmPlots.get(pos));
+                farmPlots.set(pos, new ChickenPlot(pos));
+                farmPlots.get(pos).setBounds(new Rectangle(farmPlots.get(pos).getPoint(), GraphicSizes.plotSize));
+                PageSetup.getFrame().add(farmPlots.get(pos));
+                PageSetup.getFrame().revalidate();
+                PageSetup.getFrame().repaint();
             }
             case PLANT -> {
-                farmPlots[pos] = new PlantPlot(pos);
+                PageSetup.getFrame().remove(farmPlots.get(pos));
+                farmPlots.set(pos, new PlantPlot(pos));
+                farmPlots.get(pos).setBounds(new Rectangle(farmPlots.get(pos).getPoint(), GraphicSizes.plotSize));
+                PageSetup.getFrame().add(farmPlots.get(pos));
+                PageSetup.getFrame().revalidate();
+                PageSetup.getFrame().repaint();
             }
             case HYDROPONIC -> {
-                farmPlots[pos] = new HydroponicPlot(pos);
+                PageSetup.getFrame().remove(farmPlots.get(pos));
+                farmPlots.set(pos, new HydroponicPlot(pos));
+                farmPlots.get(pos).setBounds(new Rectangle(farmPlots.get(pos).getPoint(), GraphicSizes.plotSize));
+                PageSetup.getFrame().add(farmPlots.get(pos));
+                PageSetup.getFrame().revalidate();
+                PageSetup.getFrame().repaint();
             }
         }
     }
 
-    public Plot[] getFarmPlots(){
+    public ArrayList<Plot> getFarmPlots(){
         return farmPlots;
     }
     public static User getUser(){
