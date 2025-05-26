@@ -16,6 +16,9 @@ public class InventoryUI extends JPanel{
 
     private static InventoryUI inventoryUI;
 
+
+    private JLabel gold;
+
     private JPanel upgrades;
 
 
@@ -45,9 +48,11 @@ public class InventoryUI extends JPanel{
         this.setBackground(Color.GRAY);
         this.setLayout(null);
 
+
+
+
         this.productBar = new JPanel();
         this.productBar.setBounds(10,10,320,120);
-
 
         this.productBar.setLayout(new BoxLayout(this.productBar, BoxLayout.X_AXIS));
 
@@ -70,13 +75,16 @@ public class InventoryUI extends JPanel{
         this.itemBar.setBackground(Color.pink);
         this.itemBar.setLayout(new BoxLayout(this.itemBar, BoxLayout.X_AXIS));
 
-        this.seeds = new JLabel("0",loadIcon(MoneyItems.SEEDS), SwingConstants.LEFT);
-        this.fertilizer = new JLabel("0",loadIcon(MoneyItems.FERTILIZER), SwingConstants.LEFT);
+        this.gold = new JLabel("0", new ImageIcon("src/graphics/uiImages/GOLD.png"), SwingConstants.LEFT);
+        this.seeds = new JLabel("0", loadIcon(MoneyItems.SEEDS), SwingConstants.LEFT);
+        this.fertilizer = new JLabel("0", loadIcon(MoneyItems.FERTILIZER), SwingConstants.LEFT);
 
         for (MoneyItems item : MoneyItems.values()){
             changeUIVal(item);
         }
+        changeUIVal(null);
 
+        this.itemBar.add(this.gold);
         this.itemBar.add(this.seeds);
         this.itemBar.add(this.fertilizer);
 
@@ -91,6 +99,7 @@ public class InventoryUI extends JPanel{
             case FERTILIZER -> fertilizer.setText(String.valueOf(User.getUser().getItemAmt(MoneyItems.FERTILIZER)));
             case ROE -> roe.setText(String.valueOf(User.getUser().getItemAmt(MoneyItems.ROE)));
             case SEAWEED -> seaweed.setText(String.valueOf(User.getUser().getItemAmt(MoneyItems.SEAWEED)));
+            case null, default -> gold.setText(String.valueOf(User.getUser().getMoneyAmt()));
         }
     }
 

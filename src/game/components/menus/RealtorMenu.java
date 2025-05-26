@@ -2,6 +2,7 @@ package game.components.menus;
 
 import core.PageSetup;
 import game.components.farmPlots.EmptyPlot;
+import game.components.inventory.InventoryUI;
 import utility.Constants;
 import utility.User;
 
@@ -27,35 +28,40 @@ public class RealtorMenu extends JFrame {
 
     private iconPlots[] plots = new iconPlots[9];
 
+    public double plotCost = Constants.GameConstants.startMoney;
+
 
     public RealtorMenu(){
         this.setLayout(null);
 
-        int i = 0;
-        for (iconPlots plot : plots){
-            plot = new iconPlots(i);
-            this.add(plot);
-            i++;
+
+        for (int i = 0; i < plots.length; i++){
+            plots[i] = new iconPlots(i);
+            this.add(plots[i]);
         }
     }
 
-    public class iconPlots extends JPanel{
+    private void updateIcons(){
+        for (iconPlots plot : plots){
+            plot.purchase.setText("Buy Plot: " + (int) plotCost);
+            plot.purchase.repaint();
+        }
+    }
 
-        JButton purchase = new JButton("Buy Plot");
+    private class iconPlots extends JPanel{
+
+        JButton purchase = new JButton("Buy Plot: " + (int) plotCost);
         JButton plant = new JButton("Plant");
         JButton fish = new JButton("Fish");
         JButton hydroponics = new JButton("Hydroponic");
         JButton chicken = new JButton("Chicken");
 
-        private int point;
-
         public iconPlots(int point){
             this.setBounds(new Rectangle(points[point], new Dimension(200,200)));
             this.setLayout(null);
 
-            this.point = point;
 
-            this.purchase.setBounds(25,65, 100,20);
+            this.purchase.setBounds(15,65, 120,20);
 
             this.plant.setBounds(25,20, 100,20);
             this.fish.setBounds(25,50, 100,20);
@@ -65,12 +71,17 @@ public class RealtorMenu extends JFrame {
             this.purchase.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    iconPlots.super.remove(purchase);
-                    iconPlots.super.add(plant);
-                    iconPlots.super.add(fish);
-                    iconPlots.super.add(hydroponics);
-                    iconPlots.super.add(chicken);
-                    iconPlots.super.update(getGraphics());
+                    if (User.getUser().getMoneyAmt() >= plotCost) {
+                        iconPlots.super.remove(purchase);
+                        iconPlots.super.add(plant);
+                        iconPlots.super.add(fish);
+                        iconPlots.super.add(hydroponics);
+                        iconPlots.super.add(chicken);
+                        iconPlots.super.update(getGraphics());
+                        User.getUser().changeMoneyAmt(-plotCost);
+                        InventoryUI.getInventoryUI().changeUIVal(null);
+                        updateCost();
+                    }
                 }
             });
 
@@ -101,6 +112,13 @@ public class RealtorMenu extends JFrame {
 
             this.add(purchase);
         }
+
+        public void updateCost(){
+            plotCost += 100;
+            updateIcons();
+        }
+
+
 
         @Override
         public void paintComponent(Graphics g){

@@ -20,7 +20,6 @@ public class User {
     private double money;
 
     public User(){
-
         this.farmPlots.add(new EmptyPlot(0));
         this.farmPlots.add(new EmptyPlot(1));
         this.farmPlots.add(new EmptyPlot(2));

@@ -1,0 +1,97 @@
+package game.components.menus;
+
+import game.components.inventory.InventoryUI;
+import utility.Constants;
+import utility.User;
+
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class MarketMenu extends JFrame {
+    JButton fertilizer = new JButton(String.valueOf((int) Constants.MoneyItems.FERTILIZER.sellCost)+ " gold");
+    JButton wheat = new JButton(String.valueOf((int)Constants.MoneyItems.WHEAT.sellCost) + " gold");
+    JButton roe = new JButton(String.valueOf((int)Constants.MoneyItems.ROE.sellCost)+ " gold");
+    JButton eggs = new JButton(String.valueOf((int)Constants.MoneyItems.EGGS.sellCost)+ " gold");
+    JButton seaweed = new JButton(String.valueOf((int)Constants.MoneyItems.SEAWEED.sellCost)+ " gold");
+
+    public MarketMenu() {
+        this.setLayout(null);
+
+        this.fertilizer.setBounds(50, 50, 200, 100);
+        this.wheat.setBounds(280, 50, 200, 100);
+        this.roe.setBounds(50, 150, 200, 100);
+        this.eggs.setBounds(280, 150, 200, 100);
+        this.seaweed.setBounds(50,250, 200,100);
+
+        this.wheat.setIcon(new ImageIcon("src/graphics/uiImages/WHEAT.png"));
+        this.fertilizer.setIcon(new ImageIcon("src/graphics/uiImages/FERTILIZER.png"));
+        this.roe.setIcon(new ImageIcon("src/graphics/uiImages/ROE.png"));
+        this.eggs.setIcon(new ImageIcon("src/graphics/uiImages/EGGS.png"));
+        this.seaweed.setIcon(new ImageIcon("src/graphics/uiImages/SEAWEED.png"));
+
+
+        this.fertilizer.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (User.getUser().getItemAmt(Constants.MoneyItems.FERTILIZER) > 0) {
+                    User.getUser().changeItemAmt(Constants.MoneyItems.FERTILIZER, -1);
+                    User.getUser().changeMoneyAmt(Constants.MoneyItems.FERTILIZER.sellCost);
+                    InventoryUI.getInventoryUI().changeUIVal(Constants.MoneyItems.FERTILIZER);
+                    InventoryUI.getInventoryUI().changeUIVal(null);
+                }
+            }
+        });
+        this.wheat.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (User.getUser().getItemAmt(Constants.MoneyItems.WHEAT) > 0) {
+                    User.getUser().changeItemAmt(Constants.MoneyItems.WHEAT, -1);
+                    User.getUser().changeMoneyAmt(Constants.MoneyItems.WHEAT.sellCost);
+                    InventoryUI.getInventoryUI().changeUIVal(Constants.MoneyItems.WHEAT);
+                    InventoryUI.getInventoryUI().changeUIVal(null);
+                }
+            }
+        });
+        this.roe.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (User.getUser().getItemAmt(Constants.MoneyItems.ROE) > 0) {
+                    User.getUser().changeItemAmt(Constants.MoneyItems.ROE, -1);
+                    User.getUser().changeMoneyAmt(Constants.MoneyItems.ROE.sellCost);
+                    InventoryUI.getInventoryUI().changeUIVal(Constants.MoneyItems.ROE);
+                    InventoryUI.getInventoryUI().changeUIVal(null);
+                }
+            }
+        });
+        this.eggs.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (User.getUser().getItemAmt(Constants.MoneyItems.EGGS) > 0) {
+                    User.getUser().changeItemAmt(Constants.MoneyItems.EGGS, -1);
+                    User.getUser().changeMoneyAmt(Constants.MoneyItems.EGGS.sellCost);
+                    InventoryUI.getInventoryUI().changeUIVal(Constants.MoneyItems.EGGS);
+                    InventoryUI.getInventoryUI().changeUIVal(null);
+                }
+            }
+        });
+        this.seaweed.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (User.getUser().getItemAmt(Constants.MoneyItems.SEAWEED) > 0) {
+                    User.getUser().changeItemAmt(Constants.MoneyItems.SEAWEED, -1);
+                    User.getUser().changeMoneyAmt(Constants.MoneyItems.SEAWEED.sellCost);
+                    InventoryUI.getInventoryUI().changeUIVal(Constants.MoneyItems.SEAWEED);
+                    InventoryUI.getInventoryUI().changeUIVal(null);
+                }
+            }
+        });
+
+
+        this.add(fertilizer);
+        this.add(eggs);
+        this.add(roe);
+        this.add(wheat);
+        this.add(seaweed);
+    }
+}

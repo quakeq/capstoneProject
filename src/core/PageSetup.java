@@ -3,6 +3,8 @@ package core;
 import game.components.Plot;
 import game.components.inventory.InventoryUI;
 import game.components.shopPlots.Land;
+import game.components.shopPlots.Market;
+import game.components.shopPlots.Shop;
 import utility.Constants.*;
 import utility.GlobalTick;
 import utility.User;
@@ -20,13 +22,16 @@ public class PageSetup {
     private JPanel contentPanel;
     private JPanel uiPanel;
     private Land land;
+    private Shop shop;
+    private Market market;
 
     public PageSetup(){
         user = User.getUser();
         uiPanel = InventoryUI.getInventoryUI();
         frame = PageSetup.getFrame();
         land = new Land();
-
+        shop = new Shop();
+        market = new Market();
 
 
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -42,6 +47,12 @@ public class PageSetup {
 
         land.setBounds(new Rectangle(land.getPoint(), GraphicSizes.plotSize));
         frame.add(land);
+
+        shop.setBounds(new Rectangle(shop.getPoint(), GraphicSizes.plotSize));
+        frame.add(shop);
+
+        market.setBounds(new Rectangle(market.getPoint(), GraphicSizes.plotSize));
+        frame.add(market);
 
         frame.add(uiPanel);
         frame.setSize(GraphicSizes.windowMinSize);// Set the size of the frame

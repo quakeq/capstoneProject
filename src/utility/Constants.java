@@ -31,11 +31,11 @@ public class Constants {
     }
     public enum MoneyItems {
         FERTILIZER(true, true, 10, 50),
-        SEEDS(true, false, 0, 20),
+        SEEDS(true, false, 0, 10),
         EGGS(true, true, 20, 100),
-        WHEAT(false, true, 15, 0),
+        WHEAT(false, true, 20, 0),
         ROE(true, true, 50, 200),
-        SEAWEED(true, true, 10, 20);
+        SEAWEED(false, true, 5, 0);
 
         public final boolean buyable;
         public final boolean sellable;
@@ -57,7 +57,9 @@ public class Constants {
                 new Point(0,0), new Point(200, 0),new Point(400, 0),
                 new Point(0, 200), new Point(200, 200), new Point(400,200),
                 new Point(0, 400), new Point(200,400), new Point(400, 400),
-                new Point(600,0), new Point(600,300), new Point(600,600)
+
+
+                new Point(600,0), new Point(600,200), new Point(600,400)
         };
     }
 }
