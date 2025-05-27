@@ -111,7 +111,6 @@ public abstract class Plot extends JComponent implements MouseListener, KeyListe
     }
 
     public void setMenu(){
-
         this.addMouseListener(new MouseAdapter() {
             public void mouseReleased(MouseEvent e) {
                 if (e.isPopupTrigger()) {

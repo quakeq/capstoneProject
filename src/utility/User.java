@@ -6,7 +6,6 @@ import game.components.farmPlots.*;
 import utility.Constants.*;
 
 import java.awt.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -34,8 +33,8 @@ public class User {
         this.items.put(MoneyItems.WHEAT, 0);
         this.items.put(MoneyItems.EGGS, 0);
         this.items.put(MoneyItems.FERTILIZER, 0);
-        this.items.put(MoneyItems.ROE, 0);
-        this.items.put(MoneyItems.SEAWEED, 0);
+        this.items.put(MoneyItems.RICE, 0);
+        this.items.put(MoneyItems.RICE_SEEDS, 0);
         this.items.put(MoneyItems.SEEDS, 2);
         this.money = GameConstants.startMoney;
     }
@@ -60,15 +59,15 @@ public class User {
 
     public void setPlot(int pos, PlotTypes type){
         switch(type){
-            case FISH -> {
+            case COW -> {
                 PageSetup.getFrame().remove(farmPlots.get(pos));
-                farmPlots.set(pos, new FishPlot(pos));
+                farmPlots.set(pos, new CowPlot(pos));
                 farmPlots.get(pos).setBounds(new Rectangle(farmPlots.get(pos).getPoint(), GraphicSizes.plotSize));
                 PageSetup.getFrame().add(farmPlots.get(pos));
                 PageSetup.getFrame().revalidate();
                 PageSetup.getFrame().repaint();
             }
-            case ANIMAL -> {
+            case CHICKEN -> {
                 PageSetup.getFrame().remove(farmPlots.get(pos));
                 farmPlots.set(pos, new ChickenPlot(pos));
                 farmPlots.get(pos).setBounds(new Rectangle(farmPlots.get(pos).getPoint(), GraphicSizes.plotSize));
@@ -76,7 +75,7 @@ public class User {
                 PageSetup.getFrame().revalidate();
                 PageSetup.getFrame().repaint();
             }
-            case PLANT -> {
+            case WHEAT -> {
                 PageSetup.getFrame().remove(farmPlots.get(pos));
                 farmPlots.set(pos, new PlantPlot(pos));
                 farmPlots.get(pos).setBounds(new Rectangle(farmPlots.get(pos).getPoint(), GraphicSizes.plotSize));
@@ -84,9 +83,9 @@ public class User {
                 PageSetup.getFrame().revalidate();
                 PageSetup.getFrame().repaint();
             }
-            case HYDROPONIC -> {
+            case RICE -> {
                 PageSetup.getFrame().remove(farmPlots.get(pos));
-                farmPlots.set(pos, new HydroponicPlot(pos));
+                farmPlots.set(pos, new RicePlot(pos));
                 farmPlots.get(pos).setBounds(new Rectangle(farmPlots.get(pos).getPoint(), GraphicSizes.plotSize));
                 PageSetup.getFrame().add(farmPlots.get(pos));
                 PageSetup.getFrame().revalidate();

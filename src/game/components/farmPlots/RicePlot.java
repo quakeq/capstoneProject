@@ -7,7 +7,8 @@ import utility.User;
 
 import javax.swing.*;
 
-public class PlantPlot extends Plot {
+public class RicePlot extends Plot {
+
 
     private boolean isFertilized;
 
@@ -16,13 +17,13 @@ public class PlantPlot extends Plot {
     JMenuItem plant = new JMenuItem("Plant");
 
 
-    public PlantPlot(int pos) {
+    public RicePlot(int pos) {
         super(Constants.PlotTypes.WHEAT, pos);
         harvest.addActionListener(e -> {
             this.isEmpty = true;
             this.isDoneGrowing = false;
-            User.getUser().changeItemAmt(Constants.MoneyItems.WHEAT, 1);
-            InventoryUI.getInventoryUI().changeUIVal(Constants.MoneyItems.WHEAT);
+            User.getUser().changeItemAmt(Constants.MoneyItems.RICE, 3);
+            InventoryUI.getInventoryUI().changeUIVal(Constants.MoneyItems.RICE);
         });
         fertilizer.addActionListener(e -> {
             this.isFertilized = true;
@@ -32,8 +33,8 @@ public class PlantPlot extends Plot {
         plant.addActionListener(e -> {
             this.isEmpty = false;
             this.isDoneGrowing = false;
-            User.getUser().changeItemAmt(Constants.MoneyItems.SEEDS, -1);
-            InventoryUI.getInventoryUI().changeUIVal(Constants.MoneyItems.SEEDS);
+            User.getUser().changeItemAmt(Constants.MoneyItems.RICE_SEEDS, -1);
+            InventoryUI.getInventoryUI().changeUIVal(Constants.MoneyItems.RICE_SEEDS);
         });
     }
 
@@ -44,7 +45,7 @@ public class PlantPlot extends Plot {
         } else {
             this.popupMenu.remove(harvest);
         }
-        if (this.isEmpty && User.getUser().getItemAmt(Constants.MoneyItems.SEEDS) > 0){
+        if (this.isEmpty && User.getUser().getItemAmt(Constants.MoneyItems.RICE_SEEDS) > 0){
             this.popupMenu.add(plant);
         } else {
             this.popupMenu.remove(plant);
@@ -56,4 +57,6 @@ public class PlantPlot extends Plot {
         }
         super.setMenu();
     }
+
+
 }

@@ -11,24 +11,24 @@ import java.awt.event.ActionListener;
 public class MarketMenu extends JFrame {
     JButton fertilizer = new JButton(String.valueOf((int) Constants.MoneyItems.FERTILIZER.sellCost)+ " gold");
     JButton wheat = new JButton(String.valueOf((int)Constants.MoneyItems.WHEAT.sellCost) + " gold");
-    JButton roe = new JButton(String.valueOf((int)Constants.MoneyItems.ROE.sellCost)+ " gold");
+    JButton beef = new JButton(String.valueOf((int)Constants.MoneyItems.BEEF.sellCost)+ " gold");
     JButton eggs = new JButton(String.valueOf((int)Constants.MoneyItems.EGGS.sellCost)+ " gold");
-    JButton seaweed = new JButton(String.valueOf((int)Constants.MoneyItems.SEAWEED.sellCost)+ " gold");
+    JButton rice = new JButton(String.valueOf((int)Constants.MoneyItems.RICE.sellCost)+ " gold");
 
     public MarketMenu() {
         this.setLayout(null);
 
         this.fertilizer.setBounds(50, 50, 200, 100);
         this.wheat.setBounds(280, 50, 200, 100);
-        this.roe.setBounds(50, 150, 200, 100);
+        this.beef.setBounds(50, 150, 200, 100);
         this.eggs.setBounds(280, 150, 200, 100);
-        this.seaweed.setBounds(50,250, 200,100);
+        this.rice.setBounds(50,250, 200,100);
 
         this.wheat.setIcon(new ImageIcon("src/graphics/uiImages/WHEAT.png"));
         this.fertilizer.setIcon(new ImageIcon("src/graphics/uiImages/FERTILIZER.png"));
-        this.roe.setIcon(new ImageIcon("src/graphics/uiImages/ROE.png"));
+        this.beef.setIcon(new ImageIcon("src/graphics/uiImages/CALF.png"));
         this.eggs.setIcon(new ImageIcon("src/graphics/uiImages/EGGS.png"));
-        this.seaweed.setIcon(new ImageIcon("src/graphics/uiImages/SEAWEED.png"));
+        this.rice.setIcon(new ImageIcon("src/graphics/uiImages/SEAWEED.png"));
 
 
         this.fertilizer.addActionListener(new ActionListener() {
@@ -53,13 +53,13 @@ public class MarketMenu extends JFrame {
                 }
             }
         });
-        this.roe.addActionListener(new ActionListener() {
+        this.beef.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (User.getUser().getItemAmt(Constants.MoneyItems.ROE) > 0) {
-                    User.getUser().changeItemAmt(Constants.MoneyItems.ROE, -1);
-                    User.getUser().changeMoneyAmt(Constants.MoneyItems.ROE.sellCost);
-                    InventoryUI.getInventoryUI().changeUIVal(Constants.MoneyItems.ROE);
+                if (User.getUser().getItemAmt(Constants.MoneyItems.BEEF) > 0) {
+                    User.getUser().changeItemAmt(Constants.MoneyItems.BEEF, -1);
+                    User.getUser().changeMoneyAmt(Constants.MoneyItems.BEEF.sellCost);
+                    InventoryUI.getInventoryUI().changeUIVal(Constants.MoneyItems.BEEF);
                     InventoryUI.getInventoryUI().changeUIVal(null);
                 }
             }
@@ -75,13 +75,13 @@ public class MarketMenu extends JFrame {
                 }
             }
         });
-        this.seaweed.addActionListener(new ActionListener() {
+        this.rice.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (User.getUser().getItemAmt(Constants.MoneyItems.SEAWEED) > 0) {
-                    User.getUser().changeItemAmt(Constants.MoneyItems.SEAWEED, -1);
-                    User.getUser().changeMoneyAmt(Constants.MoneyItems.SEAWEED.sellCost);
-                    InventoryUI.getInventoryUI().changeUIVal(Constants.MoneyItems.SEAWEED);
+                if (User.getUser().getItemAmt(Constants.MoneyItems.RICE) > 0) {
+                    User.getUser().changeItemAmt(Constants.MoneyItems.RICE, -1);
+                    User.getUser().changeMoneyAmt(Constants.MoneyItems.RICE.sellCost);
+                    InventoryUI.getInventoryUI().changeUIVal(Constants.MoneyItems.RICE);
                     InventoryUI.getInventoryUI().changeUIVal(null);
                 }
             }
@@ -90,8 +90,8 @@ public class MarketMenu extends JFrame {
 
         this.add(fertilizer);
         this.add(eggs);
-        this.add(roe);
+        this.add(beef);
         this.add(wheat);
-        this.add(seaweed);
+        this.add(rice);
     }
 }

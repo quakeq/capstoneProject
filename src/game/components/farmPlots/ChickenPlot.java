@@ -12,7 +12,7 @@ public class ChickenPlot extends Plot {
     JMenuItem placeEgg = new JMenuItem("Place Egg");
 
     public ChickenPlot(int pos) {
-        super(Constants.PlotTypes.ANIMAL, pos);
+        super(Constants.PlotTypes.CHICKEN, pos);
     }
     @Override
     public void setMenu(){

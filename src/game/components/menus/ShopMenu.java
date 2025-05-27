@@ -18,21 +18,24 @@ public class ShopMenu extends JFrame {
 
     JButton fertilizer = new JButton(String.valueOf((int)Constants.MoneyItems.FERTILIZER.buyCost)+ " gold");
     JButton seeds = new JButton(String.valueOf((int)Constants.MoneyItems.SEEDS.buyCost) + " gold");
-    JButton roe = new JButton(String.valueOf((int)Constants.MoneyItems.ROE.buyCost)+ " gold");
-    JButton eggs = new JButton(String.valueOf((int)Constants.MoneyItems.EGGS.buyCost)+ " gold");
+    JButton calf = new JButton(String.valueOf((int)Constants.MoneyItems.CALF.buyCost) + " gold");
+    JButton chicken = new JButton(String.valueOf((int)Constants.MoneyItems.CHICKEN.buyCost) + " gold");
+    JButton rice_seed = new JButton(String.valueOf((int)Constants.MoneyItems.RICE_SEEDS.buyCost) + " gold");
 
     public ShopMenu(){
         this.setLayout(null);
 
         this.fertilizer.setBounds(50,50, 200,100);
         this.seeds.setBounds(280,50, 200,100);
-        this.roe.setBounds(50,150, 200,100);
-        this.eggs.setBounds(280,150, 200,100);
+        this.rice_seed.setBounds(50,150, 200,100);
+        this.calf.setBounds(50, 250, 200,100);
+        this.chicken.setBounds(280, 250, 200, 100);
 
-        this.seeds.setIcon(new ImageIcon("src/graphics/uiImages/SEEDS.png"));
         this.fertilizer.setIcon(new ImageIcon("src/graphics/uiImages/FERTILIZER.png"));
-        this.roe.setIcon(new ImageIcon("src/graphics/uiImages/ROE.png"));
-        this.eggs.setIcon(new ImageIcon("src/graphics/uiImages/EGGS.png"));
+        this.calf.setIcon(new ImageIcon("src/graphics/uiImages/CALF.png"));
+        this.chicken.setIcon(new ImageIcon("src/graphics/uiImages/CHICKEN.png"));
+        this.rice_seed.setIcon(new ImageIcon("src/graphics/uiImages/RICE_SEED.png"));
+        this.seeds.setIcon(new ImageIcon("src/graphics/uiImages/SEEDS.png"));
 
         this.fertilizer.addActionListener(new ActionListener() {
             @Override
@@ -56,24 +59,13 @@ public class ShopMenu extends JFrame {
                 }
             }
         });
-        this.roe.addActionListener(new ActionListener() {
+        this.rice_seed.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (User.getUser().getMoneyAmt() >= Constants.MoneyItems.ROE.buyCost) {
-                    User.getUser().changeItemAmt(Constants.MoneyItems.ROE, 1);
-                    User.getUser().changeMoneyAmt(-Constants.MoneyItems.ROE.buyCost);
-                    InventoryUI.getInventoryUI().changeUIVal(Constants.MoneyItems.ROE);
-                    InventoryUI.getInventoryUI().changeUIVal(null);
-                }
-            }
-        });
-        this.eggs.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (User.getUser().getMoneyAmt() >= Constants.MoneyItems.EGGS.buyCost) {
-                    User.getUser().changeItemAmt(Constants.MoneyItems.EGGS, 1);
-                    User.getUser().changeMoneyAmt(-Constants.MoneyItems.EGGS.buyCost);
-                    InventoryUI.getInventoryUI().changeUIVal(Constants.MoneyItems.EGGS);
+                if (User.getUser().getMoneyAmt() >= Constants.MoneyItems.RICE_SEEDS.buyCost) {
+                    User.getUser().changeItemAmt(Constants.MoneyItems.RICE_SEEDS, 1);
+                    User.getUser().changeMoneyAmt(-Constants.MoneyItems.RICE_SEEDS.buyCost);
+                    InventoryUI.getInventoryUI().changeUIVal(Constants.MoneyItems.RICE_SEEDS);
                     InventoryUI.getInventoryUI().changeUIVal(null);
                 }
             }
@@ -82,9 +74,10 @@ public class ShopMenu extends JFrame {
 
 
         this.add(fertilizer);
-        this.add(eggs);
-        this.add(roe);
+        this.add(rice_seed);
         this.add(seeds);
+        this.add(calf);
+        this.add(chicken);
     }
 }
 

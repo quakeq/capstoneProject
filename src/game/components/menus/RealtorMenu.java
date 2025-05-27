@@ -1,14 +1,11 @@
 package game.components.menus;
 
-import core.PageSetup;
-import game.components.farmPlots.EmptyPlot;
 import game.components.inventory.InventoryUI;
 import utility.Constants;
 import utility.User;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -88,25 +85,25 @@ public class RealtorMenu extends JFrame {
                 this.plant.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        User.getUser().setPlot(point, Constants.PlotTypes.PLANT);
+                        User.getUser().setPlot(point, Constants.PlotTypes.WHEAT);
                     }
                 });
                 this.fish.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        User.getUser().setPlot(point, Constants.PlotTypes.FISH);
+                        User.getUser().setPlot(point, Constants.PlotTypes.COW);
                     }
                 });
                 this.hydroponics.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        User.getUser().setPlot(point, Constants.PlotTypes.HYDROPONIC);
+                        User.getUser().setPlot(point, Constants.PlotTypes.RICE);
                     }
                 });
                 this.chicken.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        User.getUser().setPlot(point, Constants.PlotTypes.ANIMAL);
+                        User.getUser().setPlot(point, Constants.PlotTypes.CHICKEN);
                     }
                 });
 

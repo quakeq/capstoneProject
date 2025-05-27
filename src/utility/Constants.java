@@ -12,10 +12,10 @@ public class Constants {
         public static Dimension menuIconSize = new Dimension(150,150);
     }
     public enum PlotTypes{
-        ANIMAL(3),
-        FISH(2),
-        HYDROPONIC(3),
-        PLANT(4),
+        CHICKEN(3),
+        COW(2),
+        RICE(3),
+        WHEAT(4),
         SHOP(1),
         REALTOR(1),
         MARKET(1),
@@ -30,12 +30,16 @@ public class Constants {
         }
     }
     public enum MoneyItems {
+        RICE(false, true, 5, 0),
+        RICE_SEEDS(true, false, 0, 10),
+        EGGS(false, true, 20, 0),
         FERTILIZER(true, true, 10, 50),
         SEEDS(true, false, 0, 10),
-        EGGS(true, true, 20, 100),
         WHEAT(false, true, 20, 0),
-        ROE(true, true, 50, 200),
-        SEAWEED(false, true, 5, 0);
+        BEEF(false, true, 0, 200),
+        CALF(true, true, 50, 80),
+        CHICKEN(true, true, 50, 100);
+
 
         public final boolean buyable;
         public final boolean sellable;
