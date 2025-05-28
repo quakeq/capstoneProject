@@ -12,13 +12,13 @@ import static utility.Constants.*;
 
 public abstract class Plot extends JComponent implements MouseListener, KeyListener {
     private final Image[] plotGrowth;
-    private final PlotTypes plotType;
+    protected final PlotTypes plotType;
     protected final JPopupMenu popupMenu = new JPopupMenu();
 
 
     protected PopupMenu menu;
 
-    private int curFrame = 0;
+    protected int curFrame = 0;
 
     protected boolean isEmpty;
     protected boolean isDoneGrowing;
@@ -101,9 +101,12 @@ public abstract class Plot extends JComponent implements MouseListener, KeyListe
 //        }
 
     }
+
     public void fastUpdate(){
         if (this.curFrame == this.plotType.cycleFrames-1){
             this.isDoneGrowing = true;
+        } else {
+            this.isDoneGrowing = false;
         }
         if (this.isEmpty){
             this.curFrame = 0;

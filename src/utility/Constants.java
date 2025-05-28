@@ -7,14 +7,14 @@ public class Constants {
         public static Dimension plotSize = new Dimension(200,200);
         public static Dimension windowMinSize = new Dimension(1200,800);
         public static Dimension plotPanelSize = new Dimension(1200,600);
-        public static Dimension uiPanelSize = new Dimension(1000, 145);
+        public static Dimension uiPanelSize = new Dimension(1200, 145);
         public static Dimension iconSize = new Dimension(64,64);
         public static Dimension menuIconSize = new Dimension(150,150);
     }
     public enum PlotTypes{
         CHICKEN(3),
-        COW(2),
-        RICE(3),
+        COW(5),
+        RICE(4),
         WHEAT(4),
         SHOP(1),
         REALTOR(1),
@@ -36,9 +36,10 @@ public class Constants {
         FERTILIZER(true, true, 10, 50),
         SEEDS(true, false, 0, 10),
         WHEAT(false, true, 20, 0),
-        BEEF(false, true, 0, 200),
-        CALF(true, true, 50, 80),
-        CHICKEN(true, true, 50, 100);
+        BEEF(false, true, 200, 0),
+        CALF(true, false, 0, 80),
+        CHICKEN(true, false, 0, 100),
+        CHICKEN_BUTCHERED(false, true, 50, 0);
 
 
         public final boolean buyable;
@@ -55,7 +56,7 @@ public class Constants {
 
     public static class GameConstants{
         public static int MAX_FARM_PLOTS = 9;
-        public static int startMoney = 10;
+        public static int startMoney = 10000;
 
         public static Point[] PLOT_POINT = {
                 new Point(0,0), new Point(200, 0),new Point(400, 0),

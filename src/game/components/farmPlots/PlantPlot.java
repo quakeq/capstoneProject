@@ -20,7 +20,6 @@ public class PlantPlot extends Plot {
         super(Constants.PlotTypes.WHEAT, pos);
         harvest.addActionListener(e -> {
             this.isEmpty = true;
-            this.isDoneGrowing = false;
             User.getUser().changeItemAmt(Constants.MoneyItems.WHEAT, 1);
             InventoryUI.getInventoryUI().changeUIVal(Constants.MoneyItems.WHEAT);
         });
@@ -31,7 +30,6 @@ public class PlantPlot extends Plot {
         });
         plant.addActionListener(e -> {
             this.isEmpty = false;
-            this.isDoneGrowing = false;
             User.getUser().changeItemAmt(Constants.MoneyItems.SEEDS, -1);
             InventoryUI.getInventoryUI().changeUIVal(Constants.MoneyItems.SEEDS);
         });

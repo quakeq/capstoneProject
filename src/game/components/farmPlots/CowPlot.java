@@ -22,9 +22,11 @@ public class CowPlot extends Plot {
         super(Constants.PlotTypes.COW, pos);
 
         feed.addActionListener(e -> {
-            this.isFed = true;
-            User.getUser().changeItemAmt(Constants.MoneyItems.WHEAT, -1);
-            InventoryUI.getInventoryUI().changeUIVal(Constants.MoneyItems.WHEAT);
+            if (User.getUser().getItemAmt(Constants.MoneyItems.WHEAT) > 0) {
+                this.isFed = true;
+                User.getUser().changeItemAmt(Constants.MoneyItems.WHEAT, -1);
+                InventoryUI.getInventoryUI().changeUIVal(Constants.MoneyItems.WHEAT);
+            }
         });
         placeAnimal.addActionListener(e -> {
             this.isEmpty = false;
@@ -59,7 +61,7 @@ public class CowPlot extends Plot {
         } else {
             this.popupMenu.remove(collect);
         }
-        if (!(this.isEmpty && this.isDoneGrowing && this.isFed)){
+        if (!this.isFed && !(this.isEmpty || this.isDoneGrowing)){
             this.popupMenu.add(feed);
         } else {
             this.popupMenu.remove(feed);
@@ -72,8 +74,22 @@ public class CowPlot extends Plot {
 
     @Override
     public void tickUpdate(){
-        if (this.isFed){
+        if (this.curFrame+1 == this.plotType.cycleFrames){
+            this.isFed = false;
+        }
+        if ((this.curFrame == 1 || this.curFrame == 3) && this.isFed){
+            super.tickUpdate();
+        } else if (this.curFrame != 1){
             super.tickUpdate();
         }
+    }
+
+    @Override
+    public void fastUpdate(){
+        this.isDoneGrowing = this.curFrame == this.plotType.cycleFrames - 2;
+        if (this.isEmpty){
+            this.curFrame = 0;
+        }
+
     }
 }

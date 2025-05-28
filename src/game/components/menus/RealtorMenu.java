@@ -25,7 +25,7 @@ public class RealtorMenu extends JFrame {
 
     private iconPlots[] plots = new iconPlots[9];
 
-    public double plotCost = Constants.GameConstants.startMoney;
+    public double plotCost = 10;
 
 
     public RealtorMenu(){
@@ -47,10 +47,10 @@ public class RealtorMenu extends JFrame {
 
     private class iconPlots extends JPanel{
 
-        JButton purchase = new JButton("Buy Plot: " + (int) plotCost);
-        JButton plant = new JButton("Plant");
-        JButton fish = new JButton("Fish");
-        JButton hydroponics = new JButton("Hydroponic");
+        JButton purchase = new JButton("Buy: " + -(int) plotCost + " gold");
+        JButton wheat = new JButton("Wheat");
+        JButton rice = new JButton("Rice");
+        JButton cow = new JButton("Cow");
         JButton chicken = new JButton("Chicken");
 
         public iconPlots(int point){
@@ -60,9 +60,9 @@ public class RealtorMenu extends JFrame {
 
             this.purchase.setBounds(15,65, 120,20);
 
-            this.plant.setBounds(25,20, 100,20);
-            this.fish.setBounds(25,50, 100,20);
-            this.hydroponics.setBounds(25,80, 100,20);
+            this.wheat.setBounds(25,20, 100,20);
+            this.rice.setBounds(25,50, 100,20);
+            this.cow.setBounds(25,80, 100,20);
             this.chicken.setBounds(25, 110, 100, 20);
 
             this.purchase.addActionListener(new ActionListener() {
@@ -70,9 +70,9 @@ public class RealtorMenu extends JFrame {
                 public void actionPerformed(ActionEvent e) {
                     if (User.getUser().getMoneyAmt() >= plotCost) {
                         iconPlots.super.remove(purchase);
-                        iconPlots.super.add(plant);
-                        iconPlots.super.add(fish);
-                        iconPlots.super.add(hydroponics);
+                        iconPlots.super.add(wheat);
+                        iconPlots.super.add(rice);
+                        iconPlots.super.add(cow);
                         iconPlots.super.add(chicken);
                         iconPlots.super.update(getGraphics());
                         User.getUser().changeMoneyAmt(-plotCost);
@@ -82,22 +82,22 @@ public class RealtorMenu extends JFrame {
                 }
             });
 
-                this.plant.addActionListener(new ActionListener() {
+                this.wheat.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         User.getUser().setPlot(point, Constants.PlotTypes.WHEAT);
                     }
                 });
-                this.fish.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        User.getUser().setPlot(point, Constants.PlotTypes.COW);
-                    }
-                });
-                this.hydroponics.addActionListener(new ActionListener() {
+                this.rice.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         User.getUser().setPlot(point, Constants.PlotTypes.RICE);
+                    }
+                });
+                this.cow.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        User.getUser().setPlot(point, Constants.PlotTypes.COW);
                     }
                 });
                 this.chicken.addActionListener(new ActionListener() {

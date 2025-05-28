@@ -36,6 +36,11 @@ public class User {
         this.items.put(MoneyItems.RICE, 0);
         this.items.put(MoneyItems.RICE_SEEDS, 0);
         this.items.put(MoneyItems.SEEDS, 2);
+        this.items.put(MoneyItems.BEEF, 0);
+        this.items.put(MoneyItems.CALF, 0);
+        this.items.put(MoneyItems.CHICKEN_BUTCHERED, 0);
+        this.items.put(MoneyItems.CHICKEN, 0);
+
         this.money = GameConstants.startMoney;
     }
 
@@ -50,11 +55,11 @@ public class User {
     }
 
     public void changeMoneyAmt(double num){
-        money += num;
+        this.money += num;
     }
 
     public double getMoneyAmt(){
-        return money;
+        return this.money;
     }
 
     public void setPlot(int pos, PlotTypes type){

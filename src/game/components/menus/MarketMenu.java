@@ -9,11 +9,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MarketMenu extends JFrame {
-    JButton fertilizer = new JButton(String.valueOf((int) Constants.MoneyItems.FERTILIZER.sellCost)+ " gold");
-    JButton wheat = new JButton(String.valueOf((int)Constants.MoneyItems.WHEAT.sellCost) + " gold");
-    JButton beef = new JButton(String.valueOf((int)Constants.MoneyItems.BEEF.sellCost)+ " gold");
-    JButton eggs = new JButton(String.valueOf((int)Constants.MoneyItems.EGGS.sellCost)+ " gold");
-    JButton rice = new JButton(String.valueOf((int)Constants.MoneyItems.RICE.sellCost)+ " gold");
+    JButton fertilizer = new JButton(String.valueOf("+" + (int) Constants.MoneyItems.FERTILIZER.sellCost) + " gold");
+    JButton wheat = new JButton(String.valueOf("+" + (int)Constants.MoneyItems.WHEAT.sellCost) + " gold");
+    JButton beef = new JButton(String.valueOf("+" + (int)Constants.MoneyItems.BEEF.sellCost) + " gold");
+    JButton eggs = new JButton(String.valueOf("+" + (int)Constants.MoneyItems.EGGS.sellCost) + " gold");
+    JButton rice = new JButton(String.valueOf("+" + (int)Constants.MoneyItems.RICE.sellCost) + " gold");
+    JButton dead_chicken = new JButton(String.valueOf("+" + (int)Constants.MoneyItems.CHICKEN_BUTCHERED.sellCost) + " gold");
 
     public MarketMenu() {
         this.setLayout(null);
@@ -23,12 +24,14 @@ public class MarketMenu extends JFrame {
         this.beef.setBounds(50, 150, 200, 100);
         this.eggs.setBounds(280, 150, 200, 100);
         this.rice.setBounds(50,250, 200,100);
+        this.dead_chicken.setBounds(280, 250, 200, 100);
 
         this.wheat.setIcon(new ImageIcon("src/graphics/uiImages/WHEAT.png"));
         this.fertilizer.setIcon(new ImageIcon("src/graphics/uiImages/FERTILIZER.png"));
-        this.beef.setIcon(new ImageIcon("src/graphics/uiImages/CALF.png"));
+        this.beef.setIcon(new ImageIcon("src/graphics/uiImages/BEEF.png"));
         this.eggs.setIcon(new ImageIcon("src/graphics/uiImages/EGGS.png"));
-        this.rice.setIcon(new ImageIcon("src/graphics/uiImages/SEAWEED.png"));
+        this.rice.setIcon(new ImageIcon("src/graphics/uiImages/RICE.png"));
+        this.dead_chicken.setIcon(new ImageIcon("src/graphics/uiImages/CHICKEN_BUTCHERED.png"));
 
 
         this.fertilizer.addActionListener(new ActionListener() {
@@ -86,6 +89,17 @@ public class MarketMenu extends JFrame {
                 }
             }
         });
+        this.dead_chicken.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (User.getUser().getItemAmt(Constants.MoneyItems.CHICKEN_BUTCHERED) > 0) {
+                    User.getUser().changeItemAmt(Constants.MoneyItems.CHICKEN_BUTCHERED, -1);
+                    User.getUser().changeMoneyAmt(Constants.MoneyItems.CHICKEN_BUTCHERED.sellCost);
+                    InventoryUI.getInventoryUI().changeUIVal(Constants.MoneyItems.CHICKEN_BUTCHERED);
+                    InventoryUI.getInventoryUI().changeUIVal(null);
+                }
+            }
+        });
 
 
         this.add(fertilizer);
@@ -93,5 +107,6 @@ public class MarketMenu extends JFrame {
         this.add(beef);
         this.add(wheat);
         this.add(rice);
+        this.add(dead_chicken);
     }
 }

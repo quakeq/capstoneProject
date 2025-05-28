@@ -18,10 +18,9 @@ public class RicePlot extends Plot {
 
 
     public RicePlot(int pos) {
-        super(Constants.PlotTypes.WHEAT, pos);
+        super(Constants.PlotTypes.RICE, pos);
         harvest.addActionListener(e -> {
             this.isEmpty = true;
-            this.isDoneGrowing = false;
             User.getUser().changeItemAmt(Constants.MoneyItems.RICE, 3);
             InventoryUI.getInventoryUI().changeUIVal(Constants.MoneyItems.RICE);
         });
@@ -32,7 +31,6 @@ public class RicePlot extends Plot {
         });
         plant.addActionListener(e -> {
             this.isEmpty = false;
-            this.isDoneGrowing = false;
             User.getUser().changeItemAmt(Constants.MoneyItems.RICE_SEEDS, -1);
             InventoryUI.getInventoryUI().changeUIVal(Constants.MoneyItems.RICE_SEEDS);
         });
