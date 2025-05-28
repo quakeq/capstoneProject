@@ -6,11 +6,16 @@ import utility.Constants;
 import utility.User;
 
 import javax.swing.*;
+import java.awt.event.ActionListener;
 
 public class CowPlot extends Plot {
 
     private boolean isFed;
     private boolean hasItem;
+    private int manureCount;
+
+    private boolean hasSetFed;
+    private boolean hasSetItem;
 
     JMenuItem feed = new JMenuItem("Feed");
     JMenuItem placeAnimal = new JMenuItem("Place Animal");
@@ -20,6 +25,8 @@ public class CowPlot extends Plot {
 
     public CowPlot(int pos) {
         super(Constants.PlotTypes.COW, pos);
+
+        this.manureCount = 1;
 
         feed.addActionListener(e -> {
             if (User.getUser().getItemAmt(Constants.MoneyItems.WHEAT) > 0) {
@@ -41,6 +48,8 @@ public class CowPlot extends Plot {
         });
         collect.addActionListener(e -> {
             this.hasItem = false;
+            User.getUser().changeItemAmt(Constants.MoneyItems.FERTILIZER, this.manureCount);
+            InventoryUI.getInventoryUI().changeUIVal(Constants.MoneyItems.FERTILIZER);
         });
     }
 
@@ -61,7 +70,7 @@ public class CowPlot extends Plot {
         } else {
             this.popupMenu.remove(collect);
         }
-        if (!this.isFed && !(this.isEmpty || this.isDoneGrowing)){
+        if (!this.isFed && !(this.isEmpty || this.curFrame == this.plotType.cycleFrames - 1) && User.getUser().getItemAmt(Constants.MoneyItems.WHEAT) > 0){
             this.popupMenu.add(feed);
         } else {
             this.popupMenu.remove(feed);
@@ -74,19 +83,40 @@ public class CowPlot extends Plot {
 
     @Override
     public void tickUpdate(){
-        if (this.curFrame+1 == this.plotType.cycleFrames){
-            this.isFed = false;
+
+        if (this.curFrame == this.plotType.cycleFrames - 1){
+            this.curFrame = 3;
+            this.hasSetFed = false;
         }
-        if ((this.curFrame == 1 || this.curFrame == 3) && this.isFed){
-            super.tickUpdate();
-        } else if (this.curFrame != 1){
+
+        if (this.curFrame == 3 && !this.hasSetFed){
+            this.isFed = false;
+            this.hasSetFed = true;
+        }
+
+
+
+        if (this.curFrame == 3 || this.curFrame == 1){
+            if (this.isFed){
+                super.tickUpdate();
+            }
+        } else {
             super.tickUpdate();
         }
     }
 
     @Override
     public void fastUpdate(){
-        this.isDoneGrowing = this.curFrame == this.plotType.cycleFrames - 2;
+
+
+        if (this.curFrame == 3 && !this.hasSetItem){
+            this.hasItem = true;
+            this.hasSetItem = true;
+        }
+        if (this.curFrame != 3){
+            this.hasSetItem = false;
+        }
+        this.isDoneGrowing = (this.curFrame == this.plotType.cycleFrames - 2 || this.curFrame == this.plotType.cycleFrames - 1);
         if (this.isEmpty){
             this.curFrame = 0;
         }

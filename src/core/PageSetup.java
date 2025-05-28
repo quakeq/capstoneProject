@@ -19,7 +19,6 @@ public class PageSetup {
 
     private static JFrame frame;
     private User user;
-    private JPanel contentPanel;
     private JPanel uiPanel;
     private Land land;
     private Shop shop;
