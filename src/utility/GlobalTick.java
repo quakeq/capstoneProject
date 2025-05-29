@@ -1,6 +1,6 @@
 package utility;
 
-import game.components.Plot;
+import game.Plot;
 
 public class GlobalTick {
 

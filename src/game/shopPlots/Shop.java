@@ -1,11 +1,10 @@
-package game.components.shopPlots;
+package game.shopPlots;
 
-import game.components.Plot;
-import game.components.menus.ShopMenu;
+import game.Plot;
+import game.menus.ShopMenu;
 import utility.Constants;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 

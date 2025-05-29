@@ -1,6 +1,6 @@
-package game.components.menus;
+package game.menus;
 
-import game.components.inventory.InventoryUI;
+import game.inventory.InventoryUI;
 import utility.Constants;
 import utility.User;
 

@@ -1,29 +1,26 @@
-package game.components.farmPlots;
+package game.farmPlots;
 
-import game.components.Plot;
-import game.components.inventory.InventoryUI;
+import game.Plot;
+import game.inventory.InventoryUI;
 import utility.Constants;
 import utility.User;
 
 import javax.swing.*;
 
-public class RicePlot extends Plot {
-
-
-
+public class PlantPlot extends Plot {
 
     JMenuItem harvest = new JMenuItem("Harvest");
     JMenuItem fertilizer = new JMenuItem("Use Fertilizer");
     JMenuItem plant = new JMenuItem("Plant");
 
 
-    public RicePlot(int pos) {
-        super(Constants.PlotTypes.RICE, pos);
+    public PlantPlot(int pos) {
+        super(Constants.PlotTypes.WHEAT, pos);
         harvest.addActionListener(e -> {
             this.isEmpty = true;
             this.harvestedAmount++;
-            User.getUser().changeItemAmt(Constants.MoneyItems.RICE, 3);
-            InventoryUI.getInventoryUI().changeUIVal(Constants.MoneyItems.RICE);
+            User.getUser().changeItemAmt(Constants.MoneyItems.WHEAT, 1);
+            InventoryUI.getInventoryUI().changeUIVal(Constants.MoneyItems.WHEAT);
         });
         fertilizer.addActionListener(e -> {
             this.isFertilized = true;
@@ -32,8 +29,8 @@ public class RicePlot extends Plot {
         });
         plant.addActionListener(e -> {
             this.isEmpty = false;
-            User.getUser().changeItemAmt(Constants.MoneyItems.RICE_SEEDS, -1);
-            InventoryUI.getInventoryUI().changeUIVal(Constants.MoneyItems.RICE_SEEDS);
+            User.getUser().changeItemAmt(Constants.MoneyItems.SEEDS, -1);
+            InventoryUI.getInventoryUI().changeUIVal(Constants.MoneyItems.SEEDS);
         });
     }
 
@@ -44,7 +41,7 @@ public class RicePlot extends Plot {
         } else {
             this.popupMenu.remove(harvest);
         }
-        if (this.isEmpty && User.getUser().getItemAmt(Constants.MoneyItems.RICE_SEEDS) > 0){
+        if (this.isEmpty && User.getUser().getItemAmt(Constants.MoneyItems.SEEDS) > 0){
             this.popupMenu.add(plant);
         } else {
             this.popupMenu.remove(plant);
@@ -60,10 +57,9 @@ public class RicePlot extends Plot {
     @Override
     public void fastUpdate(){
         super.fastUpdate();
-        if (this.harvestedAmount == 5){
+        if (this.harvestedAmount > 5){
             this.isFertilized = false;
             this.harvestedAmount = 0;
         }
     }
-
 }

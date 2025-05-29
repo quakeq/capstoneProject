@@ -1,10 +1,10 @@
 package core;
 
-import game.components.Plot;
-import game.components.inventory.InventoryUI;
-import game.components.shopPlots.Land;
-import game.components.shopPlots.Market;
-import game.components.shopPlots.Shop;
+import game.Plot;
+import game.inventory.InventoryUI;
+import game.shopPlots.Land;
+import game.shopPlots.Market;
+import game.shopPlots.Shop;
 import utility.Constants.*;
 import utility.GlobalTick;
 import utility.User;

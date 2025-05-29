@@ -1,4 +1,4 @@
-package game.components.inventory;
+package game.inventory;
 
 import utility.User;
 
@@ -73,7 +73,7 @@ public class InventoryUI extends JPanel{
         this.add(this.productBar);
 
         this.itemBar = new JPanel();
-        this.itemBar.setBounds(430,10,480,120);
+        this.itemBar.setBounds(430,10,520,120);
 
         this.itemBar.setBackground(Color.pink);
         this.itemBar.setLayout(new BoxLayout(this.itemBar, BoxLayout.X_AXIS));

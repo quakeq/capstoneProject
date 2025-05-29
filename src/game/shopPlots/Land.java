@@ -1,22 +1,22 @@
-package game.components.shopPlots;
+package game.shopPlots;
 
-import game.components.Plot;
-import game.components.menus.MarketMenu;
-import game.components.menus.RealtorMenu;
+import game.Plot;
+import game.menus.RealtorMenu;
 import utility.Constants;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class Market extends Plot {
+public class Land extends Plot {
 
-    private MarketMenu menu;
+    private final RealtorMenu menu;
 
-    public Market() {
-        super(Constants.PlotTypes.MARKET, 11);
-        this.menu = new MarketMenu();
+    private boolean hasEntered;
+
+    public Land() {
+        super(Constants.PlotTypes.REALTOR, 9);
+        this.menu = new RealtorMenu();
 
         this.menu.setBounds(new Rectangle(new Point(300,100), new Dimension(600,600)));
         this.menu.setResizable(false);
@@ -38,7 +38,5 @@ public class Market extends Plot {
             }
         });
     }
-
-
 
 }

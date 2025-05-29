@@ -1,18 +1,13 @@
-package game.components.menus;
+package game.menus;
 
 
-import game.components.inventory.InventoryUI;
+import game.inventory.InventoryUI;
 import utility.Constants;
 import utility.User;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
 public class ShopMenu extends JFrame {
 

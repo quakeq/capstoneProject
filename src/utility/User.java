@@ -1,8 +1,8 @@
 package utility;
 
 import core.PageSetup;
-import game.components.Plot;
-import game.components.farmPlots.*;
+import game.Plot;
+import game.farmPlots.*;
 import utility.Constants.*;
 
 import java.awt.*;

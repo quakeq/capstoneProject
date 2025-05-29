@@ -1,4 +1,4 @@
-package game.components;
+package game;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

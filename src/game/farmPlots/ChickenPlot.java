@@ -1,7 +1,7 @@
-package game.components.farmPlots;
+package game.farmPlots;
 
-import game.components.Plot;
-import game.components.inventory.InventoryUI;
+import game.Plot;
+import game.inventory.InventoryUI;
 import utility.Constants;
 import utility.User;
 
