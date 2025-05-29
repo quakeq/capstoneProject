@@ -74,13 +74,23 @@ public class PageSetup {
                 slowUpdate();
             }
         }, 0, 3000);
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                mediumUpdate();
+            }
+        }, 0, 1500);
     }
 
     public void slowUpdate(){
-        GlobalTick.growUpdate();
+        GlobalTick.slowerGrowUpdate();
         frame.repaint();
     }
 
+    public void mediumUpdate() {
+        GlobalTick.fasterGrowUpdate();
+        frame.repaint();
+    }
     public void fastUpdate(){
         GlobalTick.statusUpdate();
         frame.repaint();

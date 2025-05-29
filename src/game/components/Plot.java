@@ -15,7 +15,7 @@ public abstract class Plot extends JComponent implements MouseListener, KeyListe
     protected final PlotTypes plotType;
     protected final JPopupMenu popupMenu = new JPopupMenu();
 
-
+    protected boolean isFertilized;
     protected PopupMenu menu;
 
     protected int curFrame = 0;
@@ -23,6 +23,8 @@ public abstract class Plot extends JComponent implements MouseListener, KeyListe
     protected boolean isEmpty;
     protected boolean isDoneGrowing;
     private int pos;
+
+    protected int harvestedAmount;
 
 
     public Plot(int pos){
@@ -40,6 +42,8 @@ public abstract class Plot extends JComponent implements MouseListener, KeyListe
         this.plotType = PlotTypes.EMPTY;
         this.pos = pos;
         this.isEmpty = true;
+        this.isFertilized = false;
+        this.harvestedAmount = 0;
     }
 
 
@@ -58,6 +62,8 @@ public abstract class Plot extends JComponent implements MouseListener, KeyListe
         this.plotType = plotType;
         this.pos = pos;
         this.isEmpty = true;
+        this.isFertilized = false;
+        this.harvestedAmount = 0;
     }
 
     @Override
@@ -94,11 +100,9 @@ public abstract class Plot extends JComponent implements MouseListener, KeyListe
     public void mouseExited(MouseEvent e) {}
 
     public void tickUpdate(){
-//        if (Math.random() > 0.5){
             if (this.curFrame < this.plotType.cycleFrames-1 && this.plotType.cycleFrames > 1 && !this.isEmpty) {
                 this.curFrame++;
             }
-//        }
 
     }
 
@@ -111,6 +115,10 @@ public abstract class Plot extends JComponent implements MouseListener, KeyListe
         if (this.isEmpty){
             this.curFrame = 0;
         }
+    }
+
+    public boolean isFertilized(){
+        return this.isFertilized;
     }
 
     public void setMenu(){

@@ -10,7 +10,7 @@ import javax.swing.*;
 public class RicePlot extends Plot {
 
 
-    private boolean isFertilized;
+
 
     JMenuItem harvest = new JMenuItem("Harvest");
     JMenuItem fertilizer = new JMenuItem("Use Fertilizer");
@@ -21,6 +21,7 @@ public class RicePlot extends Plot {
         super(Constants.PlotTypes.RICE, pos);
         harvest.addActionListener(e -> {
             this.isEmpty = true;
+            this.harvestedAmount++;
             User.getUser().changeItemAmt(Constants.MoneyItems.RICE, 3);
             InventoryUI.getInventoryUI().changeUIVal(Constants.MoneyItems.RICE);
         });
@@ -48,7 +49,7 @@ public class RicePlot extends Plot {
         } else {
             this.popupMenu.remove(plant);
         }
-        if (!this.isFertilized){
+        if (!this.isFertilized && User.getUser().getItemAmt(Constants.MoneyItems.FERTILIZER) > 0){
             this.popupMenu.add(fertilizer);
         } else {
             this.popupMenu.remove(fertilizer);
@@ -56,5 +57,13 @@ public class RicePlot extends Plot {
         super.setMenu();
     }
 
+    @Override
+    public void fastUpdate(){
+        super.fastUpdate();
+        if (this.harvestedAmount == 5){
+            this.isFertilized = false;
+            this.harvestedAmount = 0;
+        }
+    }
 
 }

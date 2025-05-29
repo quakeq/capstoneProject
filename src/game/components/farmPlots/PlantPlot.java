@@ -9,8 +9,6 @@ import javax.swing.*;
 
 public class PlantPlot extends Plot {
 
-    private boolean isFertilized;
-
     JMenuItem harvest = new JMenuItem("Harvest");
     JMenuItem fertilizer = new JMenuItem("Use Fertilizer");
     JMenuItem plant = new JMenuItem("Plant");
@@ -20,6 +18,7 @@ public class PlantPlot extends Plot {
         super(Constants.PlotTypes.WHEAT, pos);
         harvest.addActionListener(e -> {
             this.isEmpty = true;
+            this.harvestedAmount++;
             User.getUser().changeItemAmt(Constants.MoneyItems.WHEAT, 1);
             InventoryUI.getInventoryUI().changeUIVal(Constants.MoneyItems.WHEAT);
         });
@@ -47,11 +46,20 @@ public class PlantPlot extends Plot {
         } else {
             this.popupMenu.remove(plant);
         }
-        if (!this.isFertilized){
+        if (!this.isFertilized && User.getUser().getItemAmt(Constants.MoneyItems.FERTILIZER) > 0){
             this.popupMenu.add(fertilizer);
         } else {
             this.popupMenu.remove(fertilizer);
         }
         super.setMenu();
+    }
+
+    @Override
+    public void fastUpdate(){
+        super.fastUpdate();
+        if (this.harvestedAmount > 5){
+            this.isFertilized = false;
+            this.harvestedAmount = 0;
+        }
     }
 }

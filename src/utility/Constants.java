@@ -12,7 +12,7 @@ public class Constants {
         public static Dimension menuIconSize = new Dimension(150,150);
     }
     public enum PlotTypes{
-        CHICKEN(3),
+        CHICKEN(5),
         COW(5),
         RICE(4),
         WHEAT(4),
@@ -33,7 +33,7 @@ public class Constants {
         RICE(false, true, 5, 0),
         RICE_SEEDS(true, false, 0, 10),
         EGGS(false, true, 20, 0),
-        FERTILIZER(true, true, 10, 50),
+        FERTILIZER(true, true, 10, 20),
         SEEDS(true, false, 0, 10),
         WHEAT(false, true, 20, 0),
         BEEF(false, true, 200, 0),

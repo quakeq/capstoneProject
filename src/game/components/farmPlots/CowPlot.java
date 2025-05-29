@@ -26,7 +26,7 @@ public class CowPlot extends Plot {
     public CowPlot(int pos) {
         super(Constants.PlotTypes.COW, pos);
 
-        this.manureCount = 1;
+        this.manureCount = 0;
 
         feed.addActionListener(e -> {
             if (User.getUser().getItemAmt(Constants.MoneyItems.WHEAT) > 0) {
@@ -50,6 +50,7 @@ public class CowPlot extends Plot {
             this.hasItem = false;
             User.getUser().changeItemAmt(Constants.MoneyItems.FERTILIZER, this.manureCount);
             InventoryUI.getInventoryUI().changeUIVal(Constants.MoneyItems.FERTILIZER);
+            this.manureCount = 0;
         });
     }
 
@@ -94,8 +95,6 @@ public class CowPlot extends Plot {
             this.hasSetFed = true;
         }
 
-
-
         if (this.curFrame == 3 || this.curFrame == 1){
             if (this.isFed){
                 super.tickUpdate();
@@ -107,11 +106,11 @@ public class CowPlot extends Plot {
 
     @Override
     public void fastUpdate(){
-
-
         if (this.curFrame == 3 && !this.hasSetItem){
             this.hasItem = true;
+            this.manureCount++;
             this.hasSetItem = true;
+            this.collect.setText("Collect Manure: " + this.manureCount);
         }
         if (this.curFrame != 3){
             this.hasSetItem = false;
